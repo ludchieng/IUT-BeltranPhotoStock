@@ -1,0 +1,49 @@
+@charset "utf-8";
+/*
+@font-face {
+	font-family: NotoSerif;
+	src: url('../fonts/NotoSerif-Regular.ttf');
+}*/
+
+
+
+html, body, main, header, main, section, div, nav, h1, h2, h3, h4, h5, h6, p, a, ul, li {
+	margin: 0 auto;
+	padding: 0;
+	background-repeat: no-repeat;
+	background-position: center;
+	font-family: "Yu Gothic", Helvetica, sans-serif;
+	text-align: center;
+	text-decoration: none;
+	box-sizing: inherit;
+	color: inherit;
+	line-height: 1.8em;
+}
+
+body {
+	height: 100%;
+	width: 100%;
+	min-height: 640px;
+	min-width: 500px;
+	background-color: rgb(20,25,30);
+	color: white;
+}
+
+main {
+	max-width: 1500px;
+	background-color: rgb(30,35,50);
+}
+
+input {
+	margin: 6px;
+	padding: 10px;
+	box-sizing: border-box;
+	width: 50%;
+	font-size: 16px;
+}
+
+.debug {
+	display: block;
+	background-color: rgb(220,10,10);
+	color: white;
+}

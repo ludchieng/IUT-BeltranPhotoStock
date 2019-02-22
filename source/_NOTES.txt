@@ -1,0 +1,4 @@
+Ajouter tags dans db
+  - Ajouter les id_image aux images dans le csv/excel
+  - Faire la correspondance avec la table d'association tags-images
+  - Importer tout dans MySQL
