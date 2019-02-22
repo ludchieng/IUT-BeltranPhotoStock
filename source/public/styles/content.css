@@ -1,0 +1,26 @@
+@charset "utf-8";
+
+@font-face {
+	font-family: FiraSansRegular;
+	src: url('../fonts/FiraSansCondensed-Regular.ttf');
+}
+
+html, body, main, header, section, div, nav, h1, h2, h3, h4, h5, h6, p, a, ul, li {
+	background-repeat: no-repeat;
+	background-position: center;
+	font-family: FiraSansRegular, sans-serif;
+	color: inherit;
+}
+/*
+input {
+	margin: 6px 0;
+	padding: 10px;
+	box-sizing: border-box;
+	width: 50%;
+	font-size: 16px;
+}
+
+textarea {
+   font-family: inherit;
+   font-size: inherit;
+}*/

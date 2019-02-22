@@ -1,0 +1,28 @@
+@font-face {
+	font-family: FiraSansLight;
+	src: url('../fonts/FiraSansCondensed-Light.ttf');
+}
+
+
+.navbar {
+  border-radius: 0;
+}
+
+
+#search {
+  background-image: url("../assets/bg-search.jpg");
+  background-size: cover;
+}
+
+#search>div {
+  padding: 10em 0;
+  margin: auto;
+  width: 80%;
+}
+
+#search input {
+	padding: 8px;
+	box-sizing: border-box;
+  font-style: FiraSansLight, sans-serif;
+	font-size: 18px;
+}

@@ -1,0 +1,44 @@
+@font-face {
+	font-family: FiraSansBold;
+	src: url('../fonts/FiraSansCondensed-Bold.ttf');
+}
+@font-face {
+	font-family: FiraSansBoldItalic;
+	src: url('../fonts/FiraSansCondensed-BoldItalic.ttf');
+}
+@font-face {
+	font-family: FiraSansXBold;
+	src: url('../fonts/FiraSansCondensed-ExtraBold.ttf');
+}
+@font-face {
+	font-family: FiraSansXBoldItalic;
+	src: url('../fonts/FiraSansCondensed-ExtraBoldItalic.ttf');
+}
+@font-face {
+	font-family: FiraSansItalic;
+	src: url('../fonts/FiraSansCondensed-Italic.ttf');
+}
+@font-face {
+	font-family: FiraSansLight;
+	src: url('../fonts/FiraSansCondensed-Light.ttf');
+}
+@font-face {
+	font-family: FiraSansLightItalic;
+	src: url('../fonts/FiraSansCondensed-LightItalic.ttf');
+}
+@font-face {
+	font-family: FiraSansMediumItalic;
+	src: url('../fonts/FiraSansCondensed-MediumItalic.ttf');
+}
+@font-face {
+	font-family: FiraSansRegular;
+	src: url('../fonts/FiraSansCondensed-Regular.ttf');
+}
+@font-face {
+	font-family: FiraSansSemiBold;
+	src: url('../fonts/FiraSansCondensed-SemiBold.ttf');
+}
+@font-face {
+	font-family: FiraSansSemiBoldItalic;
+	src: url('../fonts/FiraSansCondensed-SemiBoldItalic.ttf');
+}
