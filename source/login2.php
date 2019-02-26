@@ -18,7 +18,7 @@
 	?>
 	<?php
 		//Check POST variables content
-		if($_POST['password'], $_POST['email'])) {
+		if(isset($_POST['password'], $_POST['email'])) {
 			//Execute SQL query
 			$client = $db->query("SELECT * FROM client WHERE email = \"".$_POST['email']."\"")->fetchAll();
 			//Check if email appears only once in database
