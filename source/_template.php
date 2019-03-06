@@ -11,7 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="public/styles/content.css" />
 	<link rel="stylesheet" type="text/css" href="<?= $htmlSpecificCSS ?>" />
 </head>
-<body>
+<body id="bs-override">
 	<?= $htmlBody ?>
 </body>
 </html>
