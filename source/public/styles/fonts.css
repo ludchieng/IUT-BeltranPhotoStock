@@ -42,3 +42,53 @@
 	font-family: FiraSansSemiBoldItalic;
 	src: url('../fonts/FiraSansCondensed-SemiBoldItalic.ttf');
 }
+
+
+@font-face {
+	font-family: OswaldBold;
+	src: url('../fonts/Oswald-Bold.ttf');
+}
+@font-face {
+	font-family: OswaldXLight;
+	src: url('../fonts/Oswald-ExtraLight.ttf');
+}
+@font-face {
+	font-family: OswaldLight;
+	src: url('../fonts/Oswald-Light.ttf');
+}
+@font-face {
+	font-family: OswaldMedium;
+	src: url('../fonts/Oswald-Medium.ttf');
+}
+@font-face {
+	font-family: OswaldRegular;
+	src: url('../fonts/Oswald-Regular.ttf');
+}
+@font-face {
+	font-family: OswaldSemiBold;
+	src: url('../fonts/Oswald-SemiBold.ttf');
+}
+
+
+@font-face {
+	font-family: ReemKufiRegular;
+	src: url('../fonts/ReemKufi-Regular.ttf');
+}
+
+
+@font-face {
+	font-family: YuGothicBold;
+	src: url('../fonts/YuGothB.ttf');
+}
+@font-face {
+	font-family: YuGothicLight;
+	src: url('../fonts/YuGothL.ttf');
+}
+@font-face {
+	font-family: YuGothicMedium;
+	src: url('../fonts/YuGothM.ttf');
+}
+@font-face {
+	font-family: YuGothicRegular;
+	src: url('../fonts/YuGothR.ttf');
+}
