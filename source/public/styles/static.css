@@ -1,0 +1,77 @@
+/* HEADER */
+.navbar {
+	position: fixed;
+  border-radius: 0;
+	width: 100%;
+	border: none;
+	background-color: var(--blue-dark);
+}
+.navbar-brand {
+	padding: 18px;
+	font-size: 28px;
+}
+.navbar #logo * {
+	font-family: ReemKufiRegular, sans-serif;
+	color: white;
+}
+.navbar .navbar-nav {
+	text-transform: uppercase;
+}
+.navbar-inverse .navbar-nav > li > a {
+	color: #DDD;
+}
+.navbar-account span {
+	margin-right: 6px;
+	text-transform: none;
+}
+
+
+/* SEARCH */
+#search {
+  background-image: url("../assets/bg-search.jpg");
+  background-size: cover;
+}
+
+#search>div {
+  padding: 10em 0;
+  margin: auto;
+  width: 80%;
+}
+
+#search input {
+	padding: 8px;
+	box-sizing: border-box;
+  font-style: FiraSansLight, sans-serif;
+	font-size: 18px;
+}
+
+
+/* FOOTER */
+footer {
+	background-color: var(--blue-dark);
+	color: var(--white-off);
+}
+footer h1 {
+	text-transform: uppercase;
+	color: var(--blue-sky);
+	font-size: 12px;
+}
+footer ul {
+	list-style-type: none;
+	padding: 0;
+}
+footer a {
+	color: var(--grey-light);
+}
+footer a:hover {
+	color: white;
+	text-decoration: none;
+}
+footer table td {
+	text-transform: uppercase;
+	padding: 2px 25px 2px 0;
+}
+footer ul.inline li {
+	display: inline-block;
+	padding-right: 20px;
+}
