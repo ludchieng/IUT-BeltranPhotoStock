@@ -13,22 +13,93 @@ html, body, main, header, section, div, nav, h1, h2, h3, h4, h5, h6, p, a, ul, l
 
 body {
 	font-family: FiraSansRegular, sans-serif;
+	min-height: 100vh;
+	background-color: var(--grey-light);
 }
 
 main {
 	padding-top: 50px;
 }
 
-/*
-input {
-	margin: 6px 0;
-	padding: 10px;
-	box-sizing: border-box;
-	width: 50%;
+.flexH {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.w100 {
+	width: 100%;
+}
+
+/* STRUCTURE */
+
+.block {
+	margin: 25px auto;
+	max-width: 600px;
+	box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+}
+.block-title {
+	padding: 8px 18px;
+	max-width: 600px;
+	background-color: var(--blue-grey);
+	text-align: center;
+	font-family: FiraSansItalic;
+	font-size: 26px;
+	color: white;
+}
+.block-content {
+	padding: 18px;
+	max-width: 600px;
+	background-color: white;
+}
+
+/* FORM */
+
+#bs-override label {
+	font-weight: normal;
+}
+
+form.explicit-form label {
+	color: var(--blue-hard);
+}
+
+.form-civilite {
+	margin-right: 10%;
+}
+
+.form-date input {
+	display: inline-block;
+	margin-right: 2px;
+	width: 75px;
+	appearance: none;
+}
+
+.form-phone-ind {
+	margin-right: 5px;
+	width: 75px;
+}
+
+.form-cp {
+	margin: 0 5px 0 0;
+	width: 100px;
+}
+
+.form-ville {
+	margin: 0;
+	width: 100%;
+}
+
+.btn {
+	padding: 10px 12px;
 	font-size: 16px;
 }
 
-textarea {
-   font-family: inherit;
-   font-size: inherit;
-}*/
+.btn-blue-dark {
+	background-color: var(--blue-dark);
+	color: white;
+}
+
+.btn-blue-dark:hover {
+	background-color: var(--blue-grey);
+	color: white;
+}
