@@ -1,4 +1,4 @@
-<?php $htmlTitle = "CrashTest — Inscription"; ?>
+<?php $htmlTitle = "BeltranPhotoStock — Inscription"; ?>
 <?php $htmlSpecificCSS = ""; ?>
 
 
@@ -87,7 +87,9 @@
           <input class="form-control" name="mdp" type="password">
         </div>
 
-        <input class="btn btn-default btn-blue-dark w100" name="submit" type="submit" value="S'inscrire">
+        <div class="form-group align-right">
+          <input class="btn btn-default btn-blue-dark w-fullW " name="submit" type="submit" value="S'inscrire">
+        </div>
       </form>
     </div>
   </div>

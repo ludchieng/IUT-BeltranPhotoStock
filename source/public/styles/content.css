@@ -24,18 +24,26 @@ main {
 .flexH {
 	display: flex;
 	flex-direction: row;
+	align-items: center;
+}
+.flex-align-justify {
 	justify-content: space-between;
 }
-
-.w100 {
-	width: 100%;
+.flex-align-right {
+	justify-content: flex-end;
 }
+
+.w-fullW { max-width: 100%; }
+.w100 {	max-width: 100px; }
+.w300 {	max-width: 300px; }
+.w500 {	max-width: 500px; }
+
 
 /* STRUCTURE */
 
 .block {
 	margin: 25px auto;
-	max-width: 600px;
+	max-width: 450px;
 	box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
 }
 .block-title {
@@ -55,6 +63,7 @@ main {
 
 /* FORM */
 
+/* -- common */
 #bs-override label {
 	font-weight: normal;
 }
@@ -63,6 +72,22 @@ form.explicit-form label {
 	color: var(--blue-hard);
 }
 
+.btn {
+	padding: 10px 24px;
+	font-size: 16px;
+}
+
+.btn-blue-dark {
+	background-color: var(--blue-dark);
+	color: white;
+}
+
+.btn-blue-dark:hover {
+	background-color: var(--blue-grey);
+	color: white;
+}
+
+/* -- fields */
 .form-civilite {
 	margin-right: 10%;
 }
@@ -89,17 +114,6 @@ form.explicit-form label {
 	width: 100%;
 }
 
-.btn {
-	padding: 10px 12px;
-	font-size: 16px;
-}
-
-.btn-blue-dark {
-	background-color: var(--blue-dark);
-	color: white;
-}
-
-.btn-blue-dark:hover {
-	background-color: var(--blue-grey);
-	color: white;
+.form-signup {
+	color: var(--blue-navy);
 }

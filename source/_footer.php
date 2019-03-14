@@ -1,24 +1,7 @@
 <footer>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-lg-3">
-        <h1>Assistance</h1>
-        <div>
-          Posez votre question :<br/>
-          contact@beltraphotostock.com
-        </div>
-      </div>
-      <div class="col-lg-3">
-        <h1>Services</h1>
-        <ul>
-          <li><a href="#">Contactez-nous</a></li>
-          <li><a href="#">FAQ</a></li>
-          <li><a href="#">Commande et paiement</a></li>
-          <li><a href="#">Livraison</a></li>
-          <li><a href="#">Retour</a></li>
-        </ul>
-      </div>
-      <div class="col-lg-4">
+      <div class="col-sm-8 col-md-5">
         <h1>Explorer</h1>
         <table>
           <tr>
@@ -47,7 +30,24 @@
           </tr>
         </table>
       </div>
-      <div class="col-lg-2">
+      <div class="col-sm-4 col-md-2">
+        <h1>Services</h1>
+        <ul>
+          <li><a href="#">Contactez-nous</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Commande - paiement</a></li>
+          <li><a href="#">Livraison</a></li>
+          <li><a href="#">Retour</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-8 col-md-3">
+        <h1>Assistance</h1>
+        <div>
+          Posez votre question :<br/>
+          contact@beltranphotostock.com
+        </div>
+      </div>
+      <div class="col-sm-4 col-md-2">
         <h1>Suivez nous</h1>
         <ul class="inline">
           <li><a href=""><img src="./public/assets/icon-instagram.svg"></a></li>

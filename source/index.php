@@ -1,4 +1,4 @@
-<?php $htmlTitle = "CrashTest — Index"; ?>
+<?php $htmlTitle = "BeltranPhotoStock — Index"; ?>
 <?php $htmlSpecificCSS = ""; ?>
 
 

@@ -1,52 +1,105 @@
 /* HEADER */
-.navbar {
+@media (width >= 900px) {
+	header .alt-fullwidth { display: auto; }
+	header .alt-contracted {	display: none; }
+	header .alt-collapsed { display: none; }
+}
+@media (width < 900px) {
+	header .alt-contracted {	display: auto; }
+	header .alt-fullwidth { display: none; }
+}
+@media (width >= 768px) {
+	header .alt-collapsed { display: none; }
+}
+@media (width < 768px) {
+	header .alt-collapsed { display: auto; }
+}
+header .navbar {
 	position: fixed;
   border-radius: 0;
 	width: 100%;
 	border: none;
 	background-color: var(--blue-dark);
 }
-.navbar-brand {
-	padding: 18px;
+header .navbar-brand {
+	padding: 18px 0 18px 14px;
 	font-size: 28px;
 }
-.navbar #logo * {
+header .navbar #logo * {
 	font-family: ReemKufiRegular, sans-serif;
 	color: white;
 }
-.navbar .navbar-nav {
-	text-transform: uppercase;
-}
-.navbar-inverse .navbar-nav > li > a {
+header .navbar-inverse .navbar-nav > li > a {
 	color: #DDD;
 }
-.navbar-account span {
+header .navbar-account span {
 	margin-right: 6px;
 	text-transform: none;
+}
+header .nav-icon {
+	display: inline-block;
+	margin-right: 10px;
+	width: 20px;
+	text-align: center;
+}
+header .nav-icon img {
+	margin-bottom: 3px;
 }
 
 
 /* SEARCH */
 #search {
-  background-image: url("../assets/bg-search.jpg");
+  background-image: url("../assets/img-search-images.jpg");
   background-size: cover;
 }
-
-#search>div {
-  padding: 10em 0;
+#search-title {
+	margin-bottom: 16px;
+	text-align: center;
+	font-size: 52px;
+	font-family: FiraSansItalic;
+	color: white;
+	text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+#search-bar {
+  padding: 5em 0;
   margin: auto;
   width: 80%;
+	max-width: 750px;
 }
-
+#search form {
+	background-color: var(--white-off);
+	border-radius: 3px;
+}
+#search input, #search button {
+	height: 40px;
+	margin: auto 0;
+}
 #search input {
-	padding: 8px;
-	box-sizing: border-box;
   font-style: FiraSansLight, sans-serif;
 	font-size: 18px;
+}
+#search button {
+	width: 70px;
+	background-color: var(--orange-pale);
+	border: none;
+}
+#search button > img {
+	height: 70%;
 }
 
 
 /* FOOTER */
+@media (min-width: 993px) {
+	footer .row {
+		max-width: 1100px;
+		margin: auto;
+	}
+}
+@media (max-width: 992px) {
+	footer .row {
+		margin: auto 5% 24px 5%;
+	}
+}
 footer {
 	background-color: var(--blue-dark);
 	color: var(--white-off);
@@ -74,4 +127,7 @@ footer table td {
 footer ul.inline li {
 	display: inline-block;
 	padding-right: 20px;
+}
+footer .row>div {
+	margin-bottom: 24px;
 }
