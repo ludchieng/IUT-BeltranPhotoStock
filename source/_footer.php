@@ -35,7 +35,7 @@
         <ul>
           <li><a href="#">Contactez-nous</a></li>
           <li><a href="#">FAQ</a></li>
-          <li><a href="#">Commande - paiement</a></li>
+          <li><a href="#">Commande/paiement</a></li>
           <li><a href="#">Livraison</a></li>
           <li><a href="#">Retour</a></li>
         </ul>

@@ -1,4 +1,4 @@
-<?php $htmlTitle = "BeltranPhotoStock — Inscription"; ?>
+<?php $htmlTitle = "Inscription — BeltranPhotoStock"; ?>
 <?php $htmlSpecificCSS = ""; ?>
 
 
@@ -6,6 +6,7 @@
 <?php //-- BODY ---------------------------------------------- ?>
 
 <?php require('./_header.php'); ?>
+<section id="header-offset"></section>
 
 <main>
   <div class="block">

@@ -1,4 +1,4 @@
-<?php $htmlTitle = "BeltranPhotoStock — Se connecter"; ?>
+<?php $htmlTitle = "Connexion — BeltranPhotoStock"; ?>
 <?php $htmlSpecificCSS = ""; ?>
 
 
@@ -6,12 +6,11 @@
 <?php //-- BODY ---------------------------------------------- ?>
 
 <?php require('./_header.php'); ?>
+<section id="header-offset"></section>
 
 <main>
   <div class="block">
-    <div class="block-title">
-      Connexion
-    </div>
+    <div class="block-title">Connexion</div>
     <div class="block-content">
       <form action="#" method="post">
 

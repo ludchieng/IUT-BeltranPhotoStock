@@ -11,14 +11,17 @@ html, body, main, header, section, div, nav, h1, h2, h3, h4, h5, h6, p, a, ul, l
 	list-style-type: inherit;
 }
 
+#header-offset {
+	padding-top: 50px;
+}
+
 body {
 	font-family: FiraSansRegular, sans-serif;
 	min-height: 100vh;
 	background-color: var(--grey-light);
 }
-
-main {
-	padding-top: 50px;
+img {
+	width: 100%;
 }
 
 .flexH {
@@ -39,8 +42,14 @@ main {
 .w500 {	max-width: 500px; }
 
 
+
 /* STRUCTURE */
 
+.main-content {
+	padding: 12px 64px;
+	background-color: white;
+	box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+}
 .block {
 	margin: 25px auto;
 	max-width: 450px;
@@ -57,9 +66,10 @@ main {
 }
 .block-content {
 	padding: 18px;
-	max-width: 600px;
 	background-color: white;
 }
+
+
 
 /* FORM */
 
@@ -117,3 +127,7 @@ form.explicit-form label {
 .form-signup {
 	color: var(--blue-navy);
 }
+
+
+
+/* Themes */
