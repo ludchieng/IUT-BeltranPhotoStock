@@ -1,4 +1,4 @@
-<?php $htmlTitle = "Index — BeltranPhotoStock"; ?>
+<?php $htmlTitle = "Thèmes — BeltranPhotoStock"; ?>
 <?php $htmlSpecificCSS = ""; ?>
 
 
@@ -8,11 +8,13 @@
 <?php require('./_header.php'); ?>
 <section id="header-offset"></section>
 
-<?php require('./_search.php'); ?>
+<?php
+  $searchTitle = "Thèmes";
+  require('./_search.php');
+?>
 
 <main>
 	<div class="container main-content">
-		<h1><a href="#">Thèmes</a></h1>
 		<div class="row">
 			<div class="col-xs-6 col-md-3">
 				<a href="#t1">
@@ -64,18 +66,6 @@
 					<div class="img-caption">Musique</div>
 				</a>
 			</div>
-		</div>
-
-		<h1><a href="#">Derniers Événements</a></h1>
-		<div class="row">
-			<a href="#e1">
-				<div class="col-sm-4">
-					Yolo1
-				</div>
-				<div class="col-sm-8">
-					Yolo2
-				</div>
-
 		</div>
 	</div>
 </main>

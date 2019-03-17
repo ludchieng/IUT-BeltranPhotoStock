@@ -15,9 +15,9 @@
         <ul class="nav navbar-nav">
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Explorer</a></li>
-          <li><a href="#">Thèmes</a></li>
-          <li><a href="#">Événements</a></li>
+          <li><a href="./index.php">Explorer</a></li>
+          <li><a href="./themes.php">Thèmes</a></li>
+          <li><a href="./events.php">Événements</a></li>
           <li><a href="#">Collections privées</a></li>
           <li>
             <a href="#">

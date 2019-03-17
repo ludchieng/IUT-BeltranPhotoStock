@@ -20,10 +20,25 @@ body {
 	min-height: 100vh;
 	background-color: var(--grey-light);
 }
+
+/* image */
 img {
 	width: 100%;
 }
+.img-caption {
+	padding: 4px 0;
+	margin-bottom: 4px;
+	text-align: center;
+	font-size: 16px;
+	color: var(--blue-navy);
+}
+a:hover .img-caption,
+a:focus .img-caption {
+	color: var(--blue-hard);
+	text-decoration: none;
+}
 
+/* flex */
 .flexH {
 	display: flex;
 	flex-direction: row;
@@ -40,6 +55,13 @@ img {
 .w100 {	max-width: 100px; }
 .w300 {	max-width: 300px; }
 .w500 {	max-width: 500px; }
+
+/* texte */
+main h1 {
+	font-size: 28px;
+	font-family: OswaldMedium;
+	color: var(--blue-navy);
+}
 
 
 

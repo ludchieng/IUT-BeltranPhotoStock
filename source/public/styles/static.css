@@ -24,7 +24,7 @@
 }
 header {
 	position: fixed;
-	z-index: 99;
+	z-index: 100;
 	width: 100%;
 }
 header .navbar {
@@ -58,8 +58,13 @@ header .nav-icon img {
 
 /* SEARCH */
 #search {
-  background-image: url("../assets/img-search-images.jpg");
   background-size: cover;
+}
+#search.bg-img-images {
+  background-image: url("../assets/img-search-images.jpg");
+}
+#search.bg-img-events {
+  background-image: url("../assets/img-search-evenements.jpg");
 }
 #search-title {
 	margin-bottom: 16px;
@@ -67,7 +72,7 @@ header .nav-icon img {
 	font-size: 52px;
 	font-family: FiraSansItalic;
 	color: white;
-	text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+	text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
 }
 #search-content {
   padding: 5em 0;
