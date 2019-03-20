@@ -1,9 +1,14 @@
 /*!
- * Bootstrap v3.3.7 (http://getbootstrap.com)
+ * CUSTOMIZED Bootstrap v3.3.7 (http://getbootstrap.com)
  * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+
+/*
+  FIND "MODIFIED" IN THIS DOCUMENT TO SEE THE MODIFICATIONS
+  BROUGHT FOR THE NEEDS OF THIS WEBSITE
+*/
 html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
@@ -1102,8 +1107,8 @@ a {
 }
 a:hover,
 a:focus {
-  color: #23527c;
-  text-decoration: underline;
+  /*color: #23527c; MODIFIED */
+  /*text-decoration: underline; MODIFIED */
 }
 a:focus {
   outline: 5px auto -webkit-focus-ring-color;

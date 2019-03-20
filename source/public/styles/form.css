@@ -1,0 +1,135 @@
+/* FORM */
+
+/* -- common */
+#bs-override label {
+	font-weight: normal;
+}
+
+form.explicit-form label {
+	color: var(--blue-hard);
+}
+
+.btn {
+	padding: 10px 24px;
+	font-size: 16px;
+}
+
+.btn-blue-dark {
+	background-color: var(--blue-dark);
+	color: white;
+}
+
+.btn-blue-dark:hover {
+	background-color: var(--blue-grey);
+	color: white;
+}
+
+
+/* -- fields */
+.form-civilite {
+	margin-right: 10%;
+}
+
+.form-date input {
+	display: inline-block;
+	margin-right: 2px;
+	width: 75px;
+	appearance: none;
+}
+
+.form-phone-ind {
+	margin-right: 5px;
+	width: 75px;
+}
+
+.form-cp {
+	margin: 0 5px 0 0;
+	width: 100px;
+}
+
+.form-ville {
+	margin: 0;
+	width: 100%;
+}
+
+.form-signup {
+	color: var(--blue-navy);
+}
+
+
+/* -- custom radio checkbox */
+.chkfields.white .cell-radio,
+.chkfields.white .cell-chk {
+  border: 1px solid rgba(255,255,255,0.8);
+}
+.chkfields.navy .cell-radio,
+.chkfields.navy .cell-chk {
+  border: 1px solid rgba(10,15,30,0.8);
+}
+.chkfields.white .fill-radio,
+.chkfields.white .fill-chk {
+  background-color: rgba(255,255,255, 1);
+}
+.chkfields.navy .fill-radio,
+.chkfields.navy .fill-chk {
+  background-color: rgba(10,15,30, 1);
+}
+
+.chkfields label {
+	display: block;
+	position: relative;
+	padding: 0 10px 0 20px;
+	margin-bottom: 6px;
+	cursor: pointer;
+	user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	white-space: nowrap;
+}
+.chkfields label input {
+	position: absolute;
+	appearance:none;
+	-moz-appearance:none;
+	-webkit-appearance:none;
+}
+
+.chkfields .cell-radio,
+.chkfields .cell-chk {
+	position: absolute;
+	top: 3px;
+	left: 0;
+	height: 14px;
+	width: 14px;
+	background-color: rgba(0,0,0,0);
+}
+.chkfields .cell-radio {
+  border-radius: 7px;
+}
+.chkfields .cell-chk {
+  border-radius: 4px;
+}
+
+.chkfields .fill-radio,
+.chkfields .fill-chk {
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	height: 8px;
+	width: 8px;
+	opacity: 0;
+}
+.chkfields .fill-radio {
+  border-radius: 4px;
+}
+.chkfields .fill-chk {
+  border-radius: 2px;
+}
+
+.chkfields label:hover .fill-radio,
+.chkfields label:hover .fill-chk {
+	opacity: 0.2;
+}
+.chkfields input:checked ~ .cell-radio .fill-radio,
+.chkfields input:checked ~ .cell-chk .fill-chk {
+	opacity: 1;
+}

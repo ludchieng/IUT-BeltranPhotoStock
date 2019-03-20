@@ -1,6 +1,7 @@
 :root {
   --blue-dark: #232C37;
   --blue-navy: #163A63;
+  --blue-navy-light: #476B94;
   --blue-grey: #435061;
   --blue-sky: #95C5FF;
   --blue-hard: #1F5EA7;
@@ -11,6 +12,7 @@
   --white-off: #EDEFF3;
 
   --orange-pale: #FC6E50;
+  --orange-pale-light: #FD8870;
 
   --green-grass: #47B236;
 }

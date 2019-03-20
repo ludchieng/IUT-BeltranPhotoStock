@@ -82,7 +82,7 @@ header .nav-icon img {
 }
 #search-bar {
 	background-color: var(--white-off);
-	border-radius: 3px;
+	border-radius: 6px;
 }
 #search-bar.sticky {
 	position: fixed;
@@ -97,13 +97,19 @@ header .nav-icon img {
 #search input {
   font-style: FiraSansLight, sans-serif;
 	font-size: 18px;
+	border-radius: 0 6px 6px 0;
 }
 #search button {
 	width: 70px;
 	background-color: var(--orange-pale);
 	border: none;
+	border-radius: 6px 0 0 6px;
+}
+#search button:hover {
+	background-color: var(--orange-pale-light);
 }
 #search button > img {
+	padding-top: 3%;
 	height: 70%;
 }
 

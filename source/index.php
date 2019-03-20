@@ -66,17 +66,48 @@
 			</div>
 		</div>
 
-		<h1><a href="#">Derniers Événements</a></h1>
-		<div class="row">
-			<a href="#e1">
-				<div class="col-sm-4">
-					Yolo1
-				</div>
-				<div class="col-sm-8">
-					Yolo2
-				</div>
 
-		</div>
+		<h1><a href="#">Derniers Événements</a></h1>
+    <div class="row thn">
+      <div class="col-sm-4">
+        <a href="#e1"><img class="thn-img" src="./public/assets/img-event-1-thn.jpg"></a>
+      </div>
+      <div class="col-sm-8">
+        <div class="thn-title"><a href="#e1">Linkin Park — London Live 2017</a></div>
+        <div class="thn-date">12 avr. 2017</div>
+        <div class="thn-desc">Come, come, you talk greasily; your lips grow foul. Hast thou never an eye in thy head? Thou clouted crook-pated hugger-mugger! Thou dissembling idle-headed pigeon-egg! Thou mangled fen-sucked bum-bailey! Thou leathern-jerkin, crystal-button, knot-pated, agatering, puke-stocking, caddis-garter, smooth-tongue, Spanish pouch! Thou rank hedge-born boar-pig! Thou wimpled clapper-clawed flax-wench! Thou qualling unwash'd devil-mon!</div>
+      </div>
+    </div>
+    <div class="row thn">
+      <div class="col-sm-4">
+        <a href="#e1"><img class="thn-img" src="./public/assets/img-event-2-thn.jpg"></a>
+      </div>
+      <div class="col-sm-8">
+        <div class="thn-title"><a href="#e1">Marathon de Paris</a></div>
+        <div class="thn-date">8 mars 2018</div>
+        <div class="thn-desc">There’s no more faith in thee than a stewed prune. Thou art a boil, a plague sore, an embossed carbunkle in my corrupted blood. Away you three inch fool! Thou art a natural coward without instinct. You, minion, are too saucy. Thou art the best of cutthroats. A weasel has not such a spleen as you are toss’d with. Your virginity breeds mites, much like a cheese. Thou leathern-jerkin, crystal button, knot-pated, agatering, puke-stocking, caddis-garter, smooth tongue, Spanish pouch. Thou art the son and heir of a mongrel bitch.</div>
+      </div>
+    </div>
+    <div class="row thn">
+      <div class="col-sm-4">
+        <a href="#e1"><img class="thn-img" src="./public/assets/img-event-3-thn.jpg"></a>
+      </div>
+      <div class="col-sm-8">
+        <div class="thn-title"><a href="#e1">Le Salon de la Botanique — Bordeaux</a></div>
+        <div class="thn-date">5 févr. 2018</div>
+        <div class="thn-desc">Thou clay-brained guts, thou knotty-pated fool, thou whoreson obscene greasy tallow-catch! That trunk of humours, that bolting-hutch of beastliness, that swollen parcel of dropsies, that huge bombard of sack, that stuffed cloak-bag of guts, that roasted Manningtree ox with pudding in his belly, that reverend vice, that grey Iniquity, that father ruffian, that vanity in years? You starvelling, you eel-skin, you dried neat’s-tongue, you bull’s-pizzle, you stock-fish–O for breath to utter what is like thee!-you tailor’s-yard, you sheath, you bow-case, you vile standing tuck!</div>
+      </div>
+    </div>
+    <div class="row thn">
+      <div class="col-sm-4">
+        <a href="#e1"><img class="thn-img" src="./public/assets/img-event-4-thn.jpg"></a>
+      </div>
+      <div class="col-sm-8">
+        <div class="thn-title"><a href="#e1">Féria de San Fermin — Pampelune</a></div>
+        <div class="thn-date">20 janv. 2018</div>
+        <div class="thn-desc">Thou art some fool, I am loath to beat thee. Thou reeky rampallian dewberry! Methink'st thou art a general offence and every man should beat thee. Were I like thee I'd throw away myself. Thou slander of thy heavy mother's womb! Thou fusty rude-growing flirt-gill! Thou misbegotten bat-fowling maggot-pie! Thine sole name blisters our tongues. Thou churlish shard-borne harpy!</div>
+      </div>
+    </div>
 	</div>
 </main>
 

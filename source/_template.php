@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="public/styles/bootstrap/bootstrap.css" />
 	<link rel="stylesheet" type="text/css" href="public/styles/static.css" />
 	<link rel="stylesheet" type="text/css" href="public/styles/content.css" />
+	<link rel="stylesheet" type="text/css" href="public/styles/form.css" />
 	<link rel="stylesheet" type="text/css" href="<?= $htmlSpecificCSS ?>" />
 </head>
 <body id="bs-override">
