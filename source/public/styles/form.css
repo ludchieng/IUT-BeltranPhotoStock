@@ -9,6 +9,10 @@ form.explicit-form label {
 	color: var(--blue-hard);
 }
 
+input {
+	color: var(--grey-text);
+}
+
 .btn {
 	padding: 10px 24px;
 	font-size: 16px;
@@ -132,4 +136,9 @@ form.explicit-form label {
 .chkfields input:checked ~ .cell-radio .fill-radio,
 .chkfields input:checked ~ .cell-chk .fill-chk {
 	opacity: 1;
+}
+
+
+#results .txtf-shrt {
+	max-width: 70px;
 }

@@ -130,27 +130,64 @@
 		<fieldset class="chkfields white wrap">
 			<h2>Orientation(s)</h2>
 			<label>
-				<input type="checkbox" name="sort" value="horizontal">
+				<input type="checkbox" name="orientation" value="horizontal">
 				<span class="cell-chk"><span class="fill-chk"></span></span>
 				Horizontal
 			</label>
 			<label>
-				<input type="checkbox" name="sort" value="vertical">
+				<input type="checkbox" name="orientation" value="vertical">
 				<span class="cell-chk"><span class="fill-chk"></span></span>
 				Vertical
 			</label>
 			<label>
-				<input type="checkbox" name="sort" value="panoramique">
+				<input type="checkbox" name="orientation" value="panoramique">
 				<span class="cell-chk"><span class="fill-chk"></span></span>
 				Panoramique
 			</label>
 			<label>
-				<input type="checkbox" name="sort" value="carre">
+				<input type="checkbox" name="orientation" value="carre">
 				<span class="cell-chk"><span class="fill-chk"></span></span>
 				Carré
 			</label>
 		</fieldset>
 
+		<fieldset>
+			<h2>Prix</h2>
+			<div class="flexH flex-align-justify">
+				<label>
+					<input class="txtf-shrt" type="text" name="price-min"><br/>
+					Min.
+				</label>
+				<label>
+					<input class="txtf-shrt" type="text" name="price-max"><br/>
+					Max.
+				</label>
+			</div>
+		</fieldset>
+
+		<fieldset class="chkfields white wrap">
+			<h2>Taille (largeur)</h2>
+			<label>
+				<input type="radio" name="size" value="xlarge">
+				<span class="cell-radio"><span class="fill-radio"></span></span>
+				Très grande (> 2200 px)
+			</label>
+			<label>
+				<input type="radio" name="size" value="large">
+				<span class="cell-radio"><span class="fill-radio"></span></span>
+				Grande (> 1200 px)
+			</label>
+			<label>
+				<input type="radio" name="size" value="medium">
+				<span class="cell-radio"><span class="fill-radio"></span></span>
+				Moyenne (> 700 px)
+			</label>
+			<label>
+				<input type="radio" name="size" value="small">
+				<span class="cell-radio"><span class="fill-radio"></span></span>
+				Petite (< 700 px)
+			</label>
+		</fieldset>
 	</aside>
 	<div class="results-panel">
 		There’s no more faith in thee than a stewed prune. Thou art a boil, a plague sore, an embossed carbunkle in my corrupted blood. Away you three inch fool! Thou art a natural coward without instinct. You, minion, are too saucy. Thou art the best of cutthroats. A weasel has not such a spleen as you are toss’d with. Your virginity breeds mites, much like a cheese. Thou leathern-jerkin, crystal button, knot-pated, agatering, puke-stocking, caddis-garter, smooth tongue, Spanish pouch. Thou art the son and heir of a mongrel bitch.
