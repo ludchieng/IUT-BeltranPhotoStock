@@ -1,3 +1,23 @@
+<?php
+  session_start();
+  require_once("model/Authentificator.php");
+
+
+  if(isset($_POST["email-input"], $_POST["password-input"]))
+  {
+    $auth = new Authentificator();
+    if ($auth->loginClient($_POST["email-input"], $_POST["password-input"]))
+    {
+      //$_SESSION['user'] = new Client();
+    }
+
+  }
+?>
+
+
+<?php //###################################################### ?>
+
+
 <?php $htmlTitle = "Connexion — BeltranPhotoStock"; ?>
 <?php $htmlSpecificCSS = ""; ?>
 
@@ -12,16 +32,16 @@
   <div class="block">
     <div class="block-title">Connexion</div>
     <div class="block-content">
-      <form action="#" method="post">
+      <form action="login.php" method="post">
 
         <div class="form-group">
           <label>Email</label>
-          <input class="form-control" name="email" type="text">
+          <input class="form-control" name="email-input" type="text">
         </div>
 
         <div class="form-group">
           <label>Mot de passe</label>
-          <input class="form-control" name="password" type="password">
+          <input class="form-control" name="password-input" type="password">
         </div>
 
         <div class="form-group flexH flex-align-justify">

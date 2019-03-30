@@ -1,0 +1,110 @@
+<?php
+use \PHPUnit\Framework\TestCase;
+use \BeltranPhotoStock\Model\Authentificator;
+use \BeltranPhotoStock\Exception\DBNotFoundException;
+use \BeltranPhotoStock\Exception\DisabledAccountException;
+require_once('model/Authentificator.php');
+
+class AuthentificatorTest extends TestCase
+{
+  private $CLIENT_VALID = ['bera.robinette@hotmail.fr','Overminer',1];
+  private $CLIENT_DISABLED = ['b.fifi@hotmail.fr','Hithatides',5];
+
+  private $PHOTOGRAPHER_VALID = ['bueno.carol@outlook.fr','Purpectiod',1];
+  private $PHOTOGRAPHER_DISABLED = ['moh.almari@hotmail.fr','Kniout',5];
+
+  private $ADMIN_VALID = ['a.paradis@dayrep.com','lalala',1];
+  private $ADMIN_DISABLED = ['b.bourget@dayrep.com','hihihi',7];
+
+  private $am;
+
+  //Before
+  public function setUp(): void
+  {
+    $this->am = new Authentificator();
+  }
+
+  //After
+  public function tearDown(): void
+  {
+    $this->am = null;
+  }
+
+
+
+  public function testLogin_Client_EmailCorrect_PasswordCorrect()
+  {
+    $auth = $this->am->loginClient($this->CLIENT_VALID[0], $this->CLIENT_VALID[1]);
+    $this->assertEquals($this->CLIENT_VALID[2], $auth);
+  }
+
+  public function testLogin_Photographer_EmailCorrect_PasswordCorrect()
+  {
+    $auth = $this->am->loginPhotographer($this->PHOTOGRAPHER_VALID[0], $this->PHOTOGRAPHER_VALID[1]);
+    $this->assertEquals($this->PHOTOGRAPHER_VALID[2], $auth);
+  }
+
+  public function testLogin_Admin_EmailCorrect_PasswordCorrect()
+  {
+    $auth = $this->am->loginAdmin($this->ADMIN_VALID[0], $this->ADMIN_VALID[1]);
+    $this->assertEquals($this->ADMIN_VALID[2], $auth);
+  }
+
+
+
+  public function testLogin_Client_EmailIncorrect()
+  {
+    $this->expectException(DBNotFoundException::class);
+    $auth = $this->am->loginClient('unvalid@email.foo', 'bar');
+  }
+
+  public function testLogin_Photographer_EmailIncorrect()
+  {
+    $this->expectException(DBNotFoundException::class);
+    $auth = $this->am->loginPhotographer('unvalid@email.foo', 'bar');
+  }
+
+  public function testLogin_Admin_EmailIncorrect()
+  {
+    $this->expectException(DBNotFoundException::class);
+    $auth = $this->am->loginAdmin('unvalid@email.foo', 'bar');
+  }
+
+
+
+  public function testLogin_Client_EmailCorrect_PasswordIncorrect()
+  {
+    $auth = $this->am->loginClient($this->CLIENT_VALID[0], 'unvalidPassword');
+    $this->assertEquals(0, $auth);
+  }
+
+  public function testLogin_Photographer_EmailCorrect_PasswordIncorrect()
+  {
+    $auth = $this->am->loginPhotographer($this->PHOTOGRAPHER_VALID[0], 'unvalidPassword');
+    $this->assertEquals(0, $auth);
+  }
+
+  public function testLogin_Admin_EmailCorrect_PasswordIncorrect()
+  {
+    $auth = $this->am->loginAdmin($this->ADMIN_VALID[0], 'unvalidPassword');
+    $this->assertEquals(0, $auth);
+  }
+
+
+
+  public function testLogin_Client_DisabledAccount()
+  {
+    $this->expectException(DisabledAccountException::class);
+    $auth = $this->am->loginClient($this->CLIENT_DISABLED[0], $this->CLIENT_DISABLED[1]);
+  }
+  public function testLogin_Photographer_DisabledAccount()
+  {
+    $this->expectException(DisabledAccountException::class);
+    $auth = $this->am->loginPhotographer($this->PHOTOGRAPHER_DISABLED[0], $this->PHOTOGRAPHER_DISABLED[1]);
+  }
+  public function testLogin_Admin_DisabledAccount()
+  {
+    $this->expectException(DisabledAccountException::class);
+    $auth = $this->am->loginAdmin($this->ADMIN_DISABLED[0], $this->ADMIN_DISABLED[1]);
+  }
+}

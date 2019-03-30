@@ -119,16 +119,19 @@ main h1 a:hover {
 }
 @media (width >= 768px) {
 	#results { flex-flow: nowrap; }
-	#results aside { flex-flow: wrap; }
+	#results aside {
+	}
 }
 @media (width < 768px) {
 	#results { flex-flow: wrap; }
-	#results aside { flex-flow: nowrap; width: 100vw;}
+	#results aside {
+		display: flex;
+		flex-flow: wrap;
+		width: 100vw;
+	}
 }
 #results aside {
-	display: flex;
-	flex-flow: wrap;
-	padding: 6px;
+	padding: 16px;
 	background-color: var(--blue-grey);
 	font-family: FiraSansLightItalic;
 	color: var(--white-off);
@@ -144,16 +147,29 @@ main h1 a:hover {
 	color: white;
 }
 #results aside fieldset {
-	margin-left: 24px;
+	margin-left: 16px;
 	min-width: 180px;
 }
 
-#results .results-panel {
+#results-panel {
 	padding: 18px 28px;
 	background-color: white;
 	box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
 }
 
+#results-imgs {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+.results-column {
+  flex: 25%;
+  max-width: 25%;
+  padding: 0 4px;
+}
+.results-column img {
+  margin-top: 8px;
+}
 
 
 /* THUMBNAIL */

@@ -153,16 +153,14 @@
 
 		<fieldset>
 			<h2>Prix</h2>
-			<div class="flexH flex-align-justify">
-				<label>
-					<input class="txtf-shrt" type="text" name="price-min"><br/>
-					Min.
-				</label>
-				<label>
-					<input class="txtf-shrt" type="text" name="price-max"><br/>
-					Max.
-				</label>
-			</div>
+			<label style="margin-right: 16px;">
+				<input class="txtf-shrt" type="text" name="price-min"><br/>
+				Min.
+			</label>
+			<label>
+				<input class="txtf-shrt" type="text" name="price-max"><br/>
+				Max.
+			</label>
 		</fieldset>
 
 		<fieldset class="chkfields white wrap">
@@ -189,10 +187,69 @@
 			</label>
 		</fieldset>
 	</aside>
-	<div class="results-panel">
-		There’s no more faith in thee than a stewed prune. Thou art a boil, a plague sore, an embossed carbunkle in my corrupted blood. Away you three inch fool! Thou art a natural coward without instinct. You, minion, are too saucy. Thou art the best of cutthroats. A weasel has not such a spleen as you are toss’d with. Your virginity breeds mites, much like a cheese. Thou leathern-jerkin, crystal button, knot-pated, agatering, puke-stocking, caddis-garter, smooth tongue, Spanish pouch. Thou art the son and heir of a mongrel bitch.
+	<div id="results-panel">
+		<div id="results-imgs">
+			<div class="results-column">
+				<a href="">
+					<img src="./public/images/pexels-photo-210243.jpg">
+				</a>
+				<a href="">
+					<img src="./public/images/pexels-photo-210227.jpg">
+				</a>
+				<a href="">
+					<img src="./public/images/pexels-photo-556664.jpg">
+				</a>
+				<a href="">
+					<img src="./public/images/pexels-photo-596170.jpg">
+				</a>
+			</div>
+			<div class="results-column">
+				<a href="">
+					<img src="./public/images/pexels-photo-572226.jpg">
+				</a>
+				<a href="">
+					<img src="./public/images/pexels-photo-878251.jpg">
+				</a>
+				<a href="">
+					<img src="./public/images/pexels-photo-965153.jpg">
+				</a>
+				<a href="">
+					<img src="./public/images/pexels-photo-1087720.jpg">
+				</a>
+			</div>
+			<div class="results-column">
+				<a href="">
+					<img src="./public/images/pexels-photo-1089199.jpg">
+				</a>
+				<a href="">
+					<img src="./public/images/pexels-photo-1443867.jpg">
+				</a>
+				<a href="">
+					<img src="./public/images/pexels-photo-1606407.jpg">
+				</a>
+				<a href="">
+					<img src="./public/images/pexels-photo-325752.jpg">
+				</a>
+			</div>
+			<div class="results-column">
+				<a href="">
+					<img src="./public/images/pexels-photo-1606407.jpg">
+				</a>
+				<a href="">
+					<img src="./public/images/pexels-photo-572226.jpg">
+				</a>
+				<a href="">
+					<img src="./public/images/pexels-photo-596170.jpg">
+				</a>
+				<a href="">
+					<img src="./public/images/pexels-photo-556664.jpg">
+				</a>
+			</div>
+		</div>
 	</div>
 </main>
+
+<script src="public/js/results-panel-img-wrap.js"></script>
 
 <?php require('./_footer.php'); ?>
 
