@@ -11,7 +11,7 @@ class AuthentificatorTest extends TestCase
   private $CLIENT_DISABLED = ['b.fifi@hotmail.fr','Hithatides',5];
 
   private $PHOTOGRAPHER_VALID = ['bueno.carol@outlook.fr','Purpectiod',1];
-  private $PHOTOGRAPHER_DISABLED = ['moh.almari@hotmail.fr','Kniout',5];
+  private $PHOTOGRAPHER_DISABLED = ['moh.almari@hotmail.fr','Kniout',4];
 
   private $ADMIN_VALID = ['a.paradis@dayrep.com','lalala',1];
   private $ADMIN_DISABLED = ['b.bourget@dayrep.com','hihihi',7];
