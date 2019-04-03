@@ -2,13 +2,13 @@
 namespace BeltranPhotoStock\Model;
 
 use \BeltranPhotoStock\Exception\DBDuplicationException;
+require_once('exceptions/DBDuplicationException.php');
 use \BeltranPhotoStock\Exception\DBNotFoundException;
+require_once('exceptions/DBNotFoundException.php');
 use \BeltranPhotoStock\Exception\DisabledAccountException;
+require_once('exceptions/DisabledAccountException.php');
 
 require_once('model/DBConnector.php');
-require_once('exceptions/DBDuplicationException.php');
-require_once('exceptions/DBNotFoundException.php');
-require_once('exceptions/DisabledAccountException.php');
 
 class Authentificator extends DBConnector
 {
@@ -81,7 +81,7 @@ class Authentificator extends DBConnector
     {
       return ($user[0][0]);
     } else {
-      return 0;
+      return false;
     }
   }
 }

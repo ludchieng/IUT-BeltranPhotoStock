@@ -3,7 +3,7 @@ namespace BeltranPhotoStock\Model;
 
 require_once('model/User.php');
 
-class Client extends User
+class Photographer extends User
 {
   function __construct($userData)
   {

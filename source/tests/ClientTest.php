@@ -1,4 +1,5 @@
 <?php
+namespace BeltranPhotoStock\Test;
 use \PHPUnit\Framework\TestCase;
 use \BeltranPhotoStock\Model\Client;
 require_once('model/Client.php');
