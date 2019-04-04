@@ -2,7 +2,7 @@
 namespace BeltranPhotoStock\Test;
 use \PHPUnit\Framework\TestCase;
 use \BeltranPhotoStock\Model\Authentificator;
-use \BeltranPhotoStock\Exception\DBNotFoundException;
+use \BeltranPhotoStock\Exception\NotFoundDBException;
 use \BeltranPhotoStock\Exception\DisabledAccountException;
 require_once('model/Authentificator.php');
 
@@ -55,19 +55,19 @@ class AuthentificatorTest extends TestCase
 
   public function testLogin_Client_EmailIncorrect()
   {
-    $this->expectException(DBNotFoundException::class);
+    $this->expectException(NotFoundDBException::class);
     $auth = $this->am->loginClient('unvalid@email.foo', 'bar');
   }
 
   public function testLogin_Photographer_EmailIncorrect()
   {
-    $this->expectException(DBNotFoundException::class);
+    $this->expectException(NotFoundDBException::class);
     $auth = $this->am->loginPhotographer('unvalid@email.foo', 'bar');
   }
 
   public function testLogin_Admin_EmailIncorrect()
   {
-    $this->expectException(DBNotFoundException::class);
+    $this->expectException(NotFoundDBException::class);
     $auth = $this->am->loginAdmin('unvalid@email.foo', 'bar');
   }
 

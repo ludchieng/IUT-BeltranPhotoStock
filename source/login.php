@@ -4,10 +4,10 @@
   //Include dependencies
   use \BeltranPhotoStock\Model\Authentificator;
   require_once('model/Authentificator.php');
-  use \BeltranPhotoStock\Exception\DBDuplicationException;
-  require_once('exceptions/DBDuplicationException.php');
-  use \BeltranPhotoStock\Exception\DBNotFoundException;
-  require_once('exceptions/DBNotFoundException.php');
+  use \BeltranPhotoStock\Exception\DuplicationDBException;
+  require_once('exceptions/DuplicationDBException.php');
+  use \BeltranPhotoStock\Exception\NotFoundDBException;
+  require_once('exceptions/NotFoundDBException.php');
   use \BeltranPhotoStock\Exception\DisabledAccountException;
   require_once('exceptions/DisabledAccountException.php');
   use \BeltranPhotoStock\Model\DAO;
@@ -48,7 +48,7 @@
     {
       $auth = new Authentificator();
       try {
-        //Instanciate Authentificator
+        //Verify Login name
         switch($logInAs) {
           case 'client':
           $idUser = $auth->loginClient($_POST['email-input'], $_POST['password-input']);
@@ -76,7 +76,7 @@
           $info['message'] = '<div class="txt-red">Authentification échouée.</div>';
         }
       } catch (Exception $e) {
-        if ($e instanceof DBNotFoundException) {
+        if ($e instanceof NotFoundDBException) {
           $info['message'] = '<div class="txt-red">E-mail Inconnu.</div>';
         } else if ($e instanceof DisabledAccountException) {
           $info['message'] = '<div class="txt-red">Compte désactivé.</div>';

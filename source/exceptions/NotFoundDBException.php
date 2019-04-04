@@ -1,7 +1,7 @@
 <?php
 namespace BeltranPhotoStock\Exception;
 
-class DBDuplicationException extends \Exception
+class NotFoundDBException extends \Exception
 {
 
 }
