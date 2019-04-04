@@ -7,7 +7,8 @@ class DBConnector
 
   function __construct()
   {
-    $this->dbConnectAsRoot(); //TODO: change 'asRoot'
+    //TODO: change 'asRoot'
+    $this->dbConnectAsAdmin();
   }
 
   /**
@@ -16,6 +17,14 @@ class DBConnector
   public function dbConnectAsRoot()
   {
     $this->db = $this->dbConnect('root','');
+  }
+
+  /**
+  * Instanciate database connection as Admin
+  */
+  public function dbConnectAsAdmin()
+  {
+    $this->db = $this->dbConnect('admin','bps_milos26');
   }
 
   /**
