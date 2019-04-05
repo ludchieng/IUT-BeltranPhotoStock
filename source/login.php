@@ -43,7 +43,7 @@
       $logInAs = 'client';
     }
 
-    //Verify password
+    //Check password
     if($_POST['email-input'] != '' && $_POST['password-input'] != '')
     {
       $auth = new Authentificator();
