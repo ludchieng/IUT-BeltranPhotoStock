@@ -18,7 +18,7 @@
   require_once('model/Photographer.php');
 
   //Initialize display variables
-  $info['message'] = '';
+  $view['message'] = '';
 
   $form['email-input'] = '';
   if (isset($_POST['email-input'])) {
@@ -54,7 +54,7 @@
         }
         //Process returned result
         if ($idUser != false) {
-          $info['message'] = '<div class="txt-green">Authentification réussie.</div>';
+          $view['message'] = '<div class="txt-green">Authentification réussie.</div>';
           $dao = new DAO();
           switch($logInAs) {
             case 'client':
@@ -67,20 +67,20 @@
             break;
           }
         } else {
-          $info['message'] = '<div class="txt-red">Authentification échouée.</div>';
+          $view['message'] = '<div class="txt-red">Authentification échouée.</div>';
         }
       } catch (Exception $e) {
         if ($e instanceof NotFoundDBException) {
-          $info['message'] = '<div class="txt-red">E-mail Inconnu.</div>';
+          $view['message'] = '<div class="txt-red">E-mail Inconnu.</div>';
         } else if ($e instanceof DisabledAccountException) {
-          $info['message'] = '<div class="txt-red">Compte désactivé.</div>';
+          $view['message'] = '<div class="txt-red">Compte désactivé.</div>';
         } else {
           print_r($e);
           die();
         }
       }
     } else {
-      $info['message'] = '<div class="txt-red">Veuillez compléter les deux champs.</div>';
+      $view['message'] = '<div class="txt-red">Veuillez compléter les deux champs.</div>';
     }
   }
 ?>
@@ -124,7 +124,7 @@
           <input class="form-control" name="password-input" type="password">
         </div>
 
-        <?= $info['message'] ?>
+        <?= $view['message'] ?>
 
         <div class="form-group flexH flex-align-justify">
           <a class="form-signup" href="./signup.php">Pas encore inscrit ?</a>

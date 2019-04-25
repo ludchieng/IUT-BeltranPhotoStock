@@ -11,7 +11,7 @@
 <main class="user-area">
   <?php	require('./_aside-client.php'); ?>
   <div>
-    <h1>Mes commandes</h1>
+    <h1>Mes collections privées</h1>
   </div>
 </main>
 

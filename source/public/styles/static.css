@@ -160,3 +160,55 @@ footer .row>div {
 
 
 /* ASIDE */
+aside {
+	padding: 16px 0;
+	background-color: var(--grey-anthracite);
+	color: var(--grey-light);
+	width: 250px;
+}
+aside #profile-picture {
+	margin: 0 auto;
+	max-height: 200px;
+	max-width: 200px;
+}
+aside #profile-picture img {
+	border-radius: 100px;
+	border: 3px solid #444;
+}
+aside .user-name {
+	padding: 6px 0;
+	margin-bottom: 12px;
+	width: 100%;
+	text-align: center;
+	font-size: 24px;
+}
+aside ul {
+	padding: 0;
+	margin: 0;
+}
+aside ul li {
+	list-style-type: none;
+}
+aside ul li a {
+	display: block;
+	padding: 12px 0 12px 32px;
+}
+aside ul li a:hover {
+	background-color: #3b424a;
+	color: white;
+}
+
+/* MAIN user area */
+main.user-area {
+	display: flex;
+	flex-flow: wrap;
+	flex: 1 250px;
+}
+main.user-area>div {
+	padding: 0 18px;
+}
+main.user-area h1 {
+	font-family: FiraSansRegular;
+	font-size: 24px;
+	color: var(--blue-dark);
+}

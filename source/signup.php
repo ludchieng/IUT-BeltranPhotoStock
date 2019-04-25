@@ -42,15 +42,15 @@
   $form['pays'] = getPost('pays');
   $form['email'] = getPost('email');
 
-  $info['form-header'] = '';
-  $info['mdp'] = '';
+  $view['form-header'] = '';
+  $view['mdp'] = '';
 
   //Check form inputs
   /*
   if() //form valide
 
   } else {
-    $info['form-header'] = '<div class="txt-red>Veuillez compléter tous les champs requis.</div>"';
+    $view['form-header'] = '<div class="txt-red>Veuillez compléter tous les champs requis.</div>"';
   }*/
 ?>
 
@@ -72,7 +72,7 @@
     </div>
     <div class="block-content">
 
-      <?= $info['form-header'] ?>
+      <?= $view['form-header'] ?>
 
       <form class="explicit-form" action="#" method="post">
         <div class="form-group">
@@ -148,7 +148,7 @@
           <input class="form-control" name="mdp-confirm" type="password">
         </div>
 
-        <?= $info['mdp'] ?>
+        <?= $view['mdp'] ?>
 
         <div class="form-group align-right">
           <input class="btn btn-default btn-blue-dark w-fullW " name="submit" type="submit" value="S'inscrire">
