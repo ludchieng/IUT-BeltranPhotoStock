@@ -11,8 +11,7 @@ use \BeltranPhotoStock\Model\Admin;
 require_once('model/Admin.php');
 use \BeltranPhotoStock\Exception\NotFoundDBException;
 
-class DAOTest extends TestCase
-{
+class DAOTest extends TestCase {
   private $clientData = array(
     'id_client' => 1,
     0 => 1,
@@ -104,39 +103,31 @@ class DAOTest extends TestCase
   private $dao;
 
   //Before
-  public function setUp(): void
-  {
+  public function setUp(): void {
     $this->dao = new DAO();
   }
 
   //After
-  public function tearDown(): void
-  {
+  public function tearDown(): void {
     $this->dao = null;
   }
 
 
 
-  public function testGetClientById()
-  {
+  public function testGetClientById() {
     $this->assertEquals($this->clientData, $this->dao->getClientById($this->clientData[0])->getData());
   }
 
-
-  public function testGetPhotographerById()
-  {
+  public function testGetPhotographerById() {
     $this->assertEquals($this->photographerData, $this->dao->getPhotographerById($this->photographerData[0])->getData());
   }
 
-
-  public function testGetAdminById()
-  {
+  public function testGetAdminById() {
     $this->assertEquals($this->adminData, $this->dao->getAdminById($this->adminData[0])->getData());
   }
 
 
-  public function testGetClientById_addClient_delClient()
-  {
+  public function testGetClientById_addClient_delClient() {
     $clientArray = array (
     	'civilite' => 1,
     	'nom' => 'Gabrielle',
@@ -190,8 +181,7 @@ class DAOTest extends TestCase
   }
 
 
-  public function testGetPhotographerById_addPhotographer_delPhotographer()
-  {
+  public function testGetPhotographerById_addPhotographer_delPhotographer() {
     $pgrpherArray = array (
     	'civilite' => 1,
     	'numSiret' => '099284499-00003',
@@ -251,8 +241,7 @@ class DAOTest extends TestCase
   }
 
 
-  public function testGetAdminById_addAdmin_delAdmin()
-  {
+  public function testGetAdminById_addAdmin_delAdmin() {
     $adminArray = array (
     	'civilite' => 1,
     	'nom' => 'Gabrielle',

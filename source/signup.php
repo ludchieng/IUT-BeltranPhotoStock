@@ -8,10 +8,8 @@
   $form['civilite-0-chk-state'] = '';
   $form['civilite-1-chk-state'] = '';
   $form['civilite-2-chk-state'] = '';
-  if(isset($_POST['civilite']))
-  {
-    switch($_POST['civilite'])
-    {
+  if(isset($_POST['civilite'])) {
+    switch($_POST['civilite']) {
       case '0':
       $form['civilite-0-chk-state'] = 'checked';
       break;
@@ -24,10 +22,8 @@
     }
   }
 
-  function getPost($inputName)
-  {
-    if(isset($_POST[$inputName]))
-    {
+  function getPost($inputName) {
+    if(isset($_POST[$inputName])) {
       return $_POST[$inputName];
     } else {
       return '';

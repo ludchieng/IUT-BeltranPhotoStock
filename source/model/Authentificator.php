@@ -10,8 +10,7 @@ require_once('exceptions/DisabledAccountException.php');
 
 require_once('model/DBConnector.php');
 
-class Authentificator extends DBConnector
-{
+class Authentificator extends DBConnector {
 
   /**
   * Check if client email match with password input
@@ -20,8 +19,7 @@ class Authentificator extends DBConnector
   * @param  string $password Password input
   * @return int              Client ID when email and password match, 0 otherwise
   */
-  public function loginClient($email, $password)
-  {
+  public function loginClient($email, $password) {
     return $this->login('client', $email, $password);
   }
 
@@ -32,8 +30,7 @@ class Authentificator extends DBConnector
   * @param  string $password Password input
   * @return int              Photographer ID when email and password match, 0 otherwise
   */
-  public function loginPhotographer($email, $password)
-  {
+  public function loginPhotographer($email, $password) {
     return $this->login('photographe', $email, $password);
   }
 
@@ -44,8 +41,7 @@ class Authentificator extends DBConnector
   * @param  string $password Password input
   * @return int              Admin ID when email and password match, 0 otherwise
   */
-  public function loginAdmin($email, $password)
-  {
+  public function loginAdmin($email, $password) {
     return $this->login('administrateur', $email, $password);
   }
 
@@ -65,20 +61,16 @@ class Authentificator extends DBConnector
     $userStatement->execute(array($email));
     $user = $userStatement->fetchAll();
 
-    if(count($user) > 1)
-    {
+    if(count($user) > 1) {
       throw new DuplicationDBException('Email duplication in database', 1);
     }
-    if(count($user) == 0)
-    {
+    if(count($user) == 0) {
       throw new NotFoundDBException('Account not found in database', 1);
     }
-    if($user[0]['disponible'] == 0)
-    {
+    if($user[0]['disponible'] == 0) {
       throw new DisabledAccountException('Account disabled', 1);
     }
-    if($user[0]['hashIdentifiants'] == $password)
-    {
+    if($user[0]['hashIdentifiants'] == $password) {
       return ($user[0][0]);
     } else {
       return false;

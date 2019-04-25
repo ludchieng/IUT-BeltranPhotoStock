@@ -1,12 +1,11 @@
 <?php
 namespace BeltranPhotoStock\Model;
 
-abstract class User
-{
+abstract class User {
+
   private $data;
 
-  function __construct($userData)
-  {
+  function __construct($userData) {
     $this->data = $userData;
   }
 

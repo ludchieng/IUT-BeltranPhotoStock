@@ -7,27 +7,22 @@ require_once('model/Photographer.php');
 use \BeltranPhotoStock\Exception\NotFoundDBException;
 require_once('exceptions/NotFoundDBException.php');
 
-class DAO extends DBConnector
-{
-  public function getClientById($id)
-  {
+class DAO extends DBConnector {
+
+  public function getClientById($id) {
     return $this->getUserById('client', $id);
   }
 
-  public function getPhotographerById($id)
-  {
+  public function getPhotographerById($id) {
     return $this->getUserById('photographer', $id);
   }
 
-  public function getAdminById($id)
-  {
+  public function getAdminById($id) {
     return $this->getUserById('admin', $id);
   }
 
-  private function getUserById($userType, $id)
-  {
-    switch($userType)
-    {
+  private function getUserById($userType, $id) {
+    switch($userType) {
       case 'client':
       $sql = 'SELECT id_client, civilite, nom, prenom, dateNaissance, adresse, cp, ville, pays, telephone, email, hashIdentifiants, disponible
         FROM client WHERE id_client = ? ;';
@@ -44,12 +39,10 @@ class DAO extends DBConnector
     $pdoLink = $this->db->prepare($sql);
     $pdoLink->execute(array($id));
     $userData = $pdoLink->fetchAll();
-    if(count($userData) == 0)
-    {
+    if(count($userData) == 0) {
       throw new NotFoundDBException('User ID not found in database');
     }
-    switch($userType)
-    {
+    switch($userType) {
       case 'client':
       return new Client($userData[0]);
       case 'photographer':
@@ -65,8 +58,7 @@ class DAO extends DBConnector
    * @param  Client $client User to add into the database
    * @return int            Primary key of the new row
    */
-  public function addClient($client)
-  {
+  public function addClient($client) {
     $c = $client->getData();
     $c = array(
       $c['civilite'],
@@ -99,8 +91,7 @@ class DAO extends DBConnector
    * @param  Photographer $pgrpher User to add into the database
    * @return int                   Primary key of the new row
    */
-  public function addPhotographer($pgrpher)
-  {
+  public function addPhotographer($pgrpher) {
     $p = $pgrpher->getData();
     $p = array(
       $p['civilite'],
@@ -135,8 +126,7 @@ class DAO extends DBConnector
    * @param  Admin $admin User to add into the database
    * @return int          Primary key of the new row
    */
-  public function addAdmin($admin)
-  {
+  public function addAdmin($admin) {
     $a = $admin->getData();
     $a = array(
       $a['civilite'],
@@ -163,22 +153,19 @@ class DAO extends DBConnector
     return $this->db->query('SELECT LAST_INSERT_ID();')->fetch()[0];
   }
 
-  public function delClient($id)
-  {
+  public function delClient($id) {
     $sql = 'DELETE FROM client WHERE id_client = ?;';
     $pdoLink = $this->db->prepare($sql);
     $pdoLink->execute(array($id));
   }
 
-  public function delPhotographer($id)
-  {
+  public function delPhotographer($id) {
     $sql = 'DELETE FROM photographe WHERE id_photographe = ?;';
     $pdoLink = $this->db->prepare($sql);
     $pdoLink->execute(array($id));
   }
 
-  public function delAdmin($id)
-  {
+  public function delAdmin($id) {
     $sql = 'DELETE FROM administrateur WHERE id_admin = ?;';
     $pdoLink = $this->db->prepare($sql);
     $pdoLink->execute(array($id));

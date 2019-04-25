@@ -21,31 +21,26 @@
   $info['message'] = '';
 
   $form['email-input'] = '';
-  if (isset($_POST['email-input']))
-  {
+  if (isset($_POST['email-input'])) {
     $form['email-input'] = $_POST['email-input'];
   }
 
   $form['user-input-chk-state'] = '';
-  if (isset($_POST['user-input']) && $_POST['user-input'] == 'photographer')
-  {
+  if (isset($_POST['user-input']) && $_POST['user-input'] == 'photographer') {
     $form['user-input-chk-state'] = 'checked';
   }
 
   //Authentificate user
-  if(isset($_POST['submit']))
-  {
+  if(isset($_POST['submit'])) {
     //Get user type
-    if(isset($_POST['user-input']) && $_POST['user-input'] == 'photographer')
-    {
+    if(isset($_POST['user-input']) && $_POST['user-input'] == 'photographer') {
       $logInAs = 'photographer';
     } else {
       $logInAs = 'client';
     }
 
     //Check password
-    if($_POST['email-input'] != '' && $_POST['password-input'] != '')
-    {
+    if($_POST['email-input'] != '' && $_POST['password-input'] != '') {
       $auth = new Authentificator();
       try {
         //Verify Login name
@@ -58,8 +53,7 @@
           break;
         }
         //Process returned result
-        if ($idUser != false)
-        {
+        if ($idUser != false) {
           $info['message'] = '<div class="txt-green">Authentification réussie.</div>';
           $dao = new DAO();
           switch($logInAs) {

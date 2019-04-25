@@ -4,8 +4,7 @@ use \PHPUnit\Framework\TestCase;
 use \BeltranPhotoStock\Model\Client;
 require_once('model/Client.php');
 
-class ClientTest extends TestCase
-{
+class ClientTest extends TestCase {
   private $clientData = array(
     'id_client' => 254,
     'civilite' => 1,
@@ -24,19 +23,16 @@ class ClientTest extends TestCase
   private $client;
 
   //Before
-  public function setUp(): void
-  {
+  public function setUp(): void {
     $this->client = new Client($this->clientData);
   }
 
   //After
-  public function tearDown(): void
-  {
+  public function tearDown(): void {
     $this->client = null;
   }
 
-  public function testGetData()
-  {
+  public function testGetData() {
     $this->assertEquals($this->clientData, $this->client->getData());
   }
 }

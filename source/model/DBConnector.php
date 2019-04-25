@@ -1,12 +1,11 @@
 <?php
 namespace BeltranPhotoStock\Model;
 
-class DBConnector
-{
+class DBConnector {
+  
   protected $db;
 
-  function __construct()
-  {
+  function __construct() {
     //TODO: change 'asRoot'
     $this->dbConnectAsAdmin();
   }
@@ -14,16 +13,14 @@ class DBConnector
   /**
   * Instanciate database connection as Root user
   */
-  public function dbConnectAsRoot()
-  {
+  public function dbConnectAsRoot() {
     $this->db = $this->dbConnect('root','');
   }
 
   /**
   * Instanciate database connection as Admin
   */
-  public function dbConnectAsAdmin()
-  {
+  public function dbConnectAsAdmin() {
     $this->db = $this->dbConnect('admin','bps_milos26');
   }
 
@@ -33,8 +30,7 @@ class DBConnector
   * @param  string $password Database password
   * @return PDO              Database connection object
   */
-  private function dbConnect($user, $password)
-  {
+  private function dbConnect($user, $password) {
     $database = new \PDO('mysql:host=localhost;dbname=beltran_photo_stock;charset=utf8', $user, $password);
     return $database;
   }
