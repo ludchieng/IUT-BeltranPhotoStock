@@ -1,12 +1,4 @@
-<?php
-
-?>
-
-
-<?php //###################################################### ?>
-
-
-<?php $htmlTitle = "Espace Client — BeltranPhotoStock"; ?>
+<?php $htmlTitle = "Inscription — BeltranPhotoStock"; ?>
 <?php $htmlSpecificCSS = ""; ?>
 
 
@@ -16,15 +8,16 @@
 <?php require('./_header.php'); ?>
 <section id="header-offset"></section>
 
-<main class="user-area">
-  <?php	require('./_aside-client.php'); ?>
-  <div>
-    <h1>Mes collections privées</h1>
+<main>
+  <div class="block">
+    <div class="block-title">
+      Inscription
+    </div>
+    <div class="block-content">
+      <div class="txt-green">Inscription réussie.</div>
+    </div>
   </div>
 </main>
-
-
-<?php require('./_footer.php'); ?>
 
 <?php //-- END BODY ------------------------------------------ ?>
 <?php $htmlBody = ob_get_clean(); ?>

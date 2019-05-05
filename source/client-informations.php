@@ -1,3 +1,11 @@
+<?php
+
+?>
+
+
+<?php //###################################################### ?>
+
+
 <?php $htmlTitle = "Espace Client — BeltranPhotoStock"; ?>
 <?php $htmlSpecificCSS = ""; ?>
 

@@ -4,6 +4,8 @@ namespace BeltranPhotoStock\Model;
 require_once('model/Client.php');
 require_once('model/Photographer.php');
 
+use \BeltranPhotoStock\Model\DBConnector;
+require_once('model/DBConnector.php');
 use \BeltranPhotoStock\Exception\NotFoundDBException;
 require_once('exceptions/NotFoundDBException.php');
 
@@ -80,7 +82,7 @@ class DAO extends DBConnector {
       $pdoLink = $this->db->prepare($sql);
       $pdoLink->execute($c);
     } catch(PDOException $e) {
-      print_r($e-getMessage());
+      print_r($e->getMessage());
       die();
     }
     return $this->db->query('SELECT LAST_INSERT_ID();')->fetch()[0];

@@ -1,3 +1,11 @@
+<?php
+
+?>
+
+
+<?php //###################################################### ?>
+
+
 <?php $htmlTitle = "Résultats — BeltranPhotoStock"; ?>
 <?php $htmlSpecificCSS = ""; ?>
 
@@ -25,7 +33,7 @@
 				du plus récent au plus ancien
 			</label>
 			<label>
-				<input type="radio" name="sort" value="relevance">
+				<input type="radio" name="sort" value="relevant">
 				<span class="cell-radio"><span class="fill-radio"></span></span>
 				pertinence
 			</label>

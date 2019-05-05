@@ -17,7 +17,7 @@
   use \BeltranPhotoStock\Model\Photographer;
   require_once('model/Photographer.php');
 
-  //Initialize display variables
+  //Initialize view variables
   $view['message'] = '';
 
   $form['email-input'] = '';
@@ -30,7 +30,7 @@
     $form['user-input-chk-state'] = 'checked';
   }
 
-  //Authentificate user
+  //Authenticate user
   if(isset($_POST['submit'])) {
     //Get user type
     if(isset($_POST['user-input']) && $_POST['user-input'] == 'photographer') {
@@ -58,11 +58,11 @@
           $dao = new DAO();
           switch($logInAs) {
             case 'client':
-            $_SESSION['user'] = new Client($dao->getClientById($idUser));
+            $_SESSION['user'] = $dao->getClientById($idUser);
             header("Location: ./client.php");
             break;
             case 'photographer':
-            $_SESSION['user'] = new Photographer($dao->getPhotographerById($idUser));
+            $_SESSION['user'] = $dao->getPhotographerById($idUser);
             header("Location: ./photographer.php");
             break;
           }

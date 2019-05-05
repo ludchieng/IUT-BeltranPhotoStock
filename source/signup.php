@@ -2,22 +2,31 @@
   session_start();
 
   //Include dependencies
+  use \BeltranPhotoStock\Model\DAO;
+  require_once('model/DAO.php');
+  use \BeltranPhotoStock\Model\Client;
+  require_once('model/Client.php');
+  use \BeltranPhotoStock\Exception\NotFoundDBException;
+  require_once('exceptions/NotFoundDBException.php');
 
-
-  //Initialize display variables
+  //Initialize view variables
   $form['civilite-0-chk-state'] = '';
   $form['civilite-1-chk-state'] = '';
   $form['civilite-2-chk-state'] = '';
+  $form['civilite'] = '';
   if(isset($_POST['civilite'])) {
     switch($_POST['civilite']) {
       case '0':
       $form['civilite-0-chk-state'] = 'checked';
+      $form['civilite'] = 0;
       break;
       case '1':
       $form['civilite-1-chk-state'] = 'checked';
+      $form['civilite'] = 1;
       break;
       case '2':
       $form['civilite-2-chk-state'] = 'checked';
+      $form['civilite'] = 2;
       break;
     }
   }
@@ -46,13 +55,72 @@
   $view['mdp'] = '';
 
   //Check form inputs
-  /*
-  if() //form valide
 
+  $form['mdp'] = getPost('mdp');
+  $form['mdp-confirm'] = getPost('mdp-confirm');
+
+
+  if(isset($_POST['submit']) && $form['mdp'] == $form['mdp-confirm']) {
+    //Then both password inputs match
+
+    if($form['civilite'] != '' &&
+      $form['prenom'] != '' &&
+      $form['nom'] != '' &&
+      $form['jour'] != '' &&
+      $form['mois'] != '' &&
+      $form['annee'] != '' &&
+      $form['telephone-ind'] != '' &&
+      $form['telephone'] != '' &&
+      $form['adresse'] != '' &&
+      $form['cp'] != '' &&
+      $form['ville'] != '' &&
+      $form['pays'] != '' &&
+      $form['email'] != '' &&
+      $form['mdp'] != '' &&
+      $form['mdp-confirm'] != ''
+    ) {
+      //Then all the text fields are filled
+      $dao = new DAO();
+      $clientData = array(
+        'id_client' => null,
+        'civilite' => $form['civilite'],
+        'nom' => $form['nom'],
+        'prenom' => $form['prenom'],
+        'dateNaissance' => $form['annee'].'-'.$form['mois'].'-'.$form['jour'],
+        'adresse' => $form['adresse'],
+        'cp' => $form['cp'],
+        'ville' => $form['ville'],
+        'pays' => $form['pays'],
+        'telephone' => '+'.$form['telephone-ind'].$form['telephone'],
+        'email' => $form['email'],
+        'hashIdentifiants' => $form['mdp'],
+        'disponible' => 1
+      );
+      $client = new Client($clientData);
+      $idClient = $dao->addClient($client);
+
+      //Check in database if successful
+      try {
+        $dao->getClientById($idClient);
+        $success = true;
+        $view['form-header'] = '<div class="txt-green">Inscription réussie.</div>';
+      } catch(NotFoundDBException $e) {
+        $success = false;
+        $view['form-header'] = '<div class="txt-orange">Erreur base de données.</div>';
+      }
+      if($success) {
+        header('Location: ./signup-confirmation.php');
+      }
+    } else {
+      $view['form-header'] = '<div class="txt-red">Veuillez compléter tous les champs requis.</div>';
+    }
   } else {
-    $view['form-header'] = '<div class="txt-red>Veuillez compléter tous les champs requis.</div>"';
-  }*/
+    $view['form-header'] = '<div class="txt-red">Les deux mots de passe ne correspondent pas.</div>';
+  }
 ?>
+
+
+<?php //###################################################### ?>
 
 
 <?php $htmlTitle = "Inscription — BeltranPhotoStock"; ?>
