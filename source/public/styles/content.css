@@ -53,11 +53,13 @@ a img:hover {
 	flex-direction: row;
 	align-items: center;
 }
+
 .flexV {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 }
+
 .flex-align-center {
 	justify-content: center;
 }
@@ -76,6 +78,7 @@ a img:hover {
 .w100 {	max-width: 100px; }
 .w300 {	max-width: 300px; }
 .w500 {	max-width: 500px; }
+.w1000 {	max-width: 1000px; }
 
 /* text */
 main h1 {
@@ -94,6 +97,9 @@ main h1 a:hover {
 }
 .txt-green {
 	color: var(--green-grass);
+}
+.txt-blue-hard{
+	color: var(--blue-hard);
 }
 
 
@@ -122,6 +128,20 @@ main h1 a:hover {
 .block-content {
 	padding: 18px;
 	background-color: white;
+}
+.block-panel {
+	margin: auto 16px;
+	flex: 1;
+}
+.block-panel-title {
+	color: var(--blue-hard);
+	font-size: 16px;
+	font-family: FiraSansBold;
+}
+.separator {
+	display: block;
+	margin-bottom: 24px;
+	border-bottom: 1px solid rgba(0,0,0,0.15);
 }
 
 

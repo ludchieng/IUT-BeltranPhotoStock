@@ -177,7 +177,7 @@
               <input class="form-control" name="telephone-ind" type="text" value="<?= $form['telephone-ind'] ?>" maxlength="2">
             </div>
             <input class="form-control form-phone-num" name="telephone" type="text" value="<?= $form['telephone'] ?>">
-          </fieldset class="form-phone">
+          </fieldset>
         </div>
 
         <div class="form-group">
@@ -218,7 +218,7 @@
 
         <?= $view['mdp'] ?>
 
-        <div class="form-group align-right">
+        <div class="form-group">
           <input class="btn btn-default btn-blue-dark w-fullW " name="submit" type="submit" value="S'inscrire">
         </div>
       </form>

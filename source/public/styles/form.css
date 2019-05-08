@@ -18,6 +18,7 @@ input {
 	font-size: 16px;
 }
 
+
 .btn-blue-dark {
 	background-color: var(--blue-dark);
 	color: white;
@@ -25,6 +26,16 @@ input {
 
 .btn-blue-dark:hover {
 	background-color: var(--blue-grey);
+	color: white;
+}
+
+.btn-green {
+	background-color: var(--green-grass);
+	color: white;
+}
+
+.btn-green:hover {
+	background-color: rgb(67, 185, 69);
 	color: white;
 }
 
@@ -44,6 +55,11 @@ input {
 .form-phone-ind {
 	margin-right: 5px;
 	width: 75px;
+}
+
+.form-phone-num {
+	flex: 1;
+	width: auto;
 }
 
 .form-cp {

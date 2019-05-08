@@ -164,7 +164,7 @@ aside {
 	padding: 16px 0;
 	background-color: var(--grey-anthracite);
 	color: var(--grey-light);
-	width: 250px;
+	min-width: 250px;
 }
 aside #profile-picture {
 	margin: 0 auto;
@@ -201,11 +201,12 @@ aside ul li a:hover {
 /* MAIN user area */
 main.user-area {
 	display: flex;
-	flex-flow: wrap;
-	flex: 1 250px;
+	flex-flow: nowrap;
 }
-main.user-area>div {
+main.user-area>section {
+	margin-bottom: 24px;
 	padding: 0 18px;
+	flex: 1;
 }
 main.user-area h1 {
 	font-family: FiraSansRegular;
