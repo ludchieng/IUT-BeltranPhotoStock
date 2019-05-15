@@ -1,4 +1,107 @@
 <?php
+	session_start();
+	// Import dependencies
+	use \BeltranPhotoStock\Model\DAO;
+	require_once('model/DAO.php');
+	
+	// Initialize view variables
+	function getGet($inputName) {
+		if(isset($_POST[$inputName])) {
+			return $_POST[$inputName];
+		} else {
+			return '';
+		}
+	}
+	$form['search'] = getGet('search');
+	$form['price-min'] = getGet('price-min');
+	$form['price-max'] = getGet('price-max');
+	
+	// Load images
+	if(isset($_POST['search'])) {
+		// Escape special chars
+		$forbiddenChar = [';', '(', ')', '"', ',', '<', '>'];
+		$search = str_replace($forbiddenChar, "", $_POST['search']);
+		
+		// Explode the query search to an array of words
+		$search = explode(" ",$search);
+		
+		// SQL Query generation
+		$sql = 'SELECT DISTINCT I.id_image, I.filename, I.titre, I.dateCreation, I.datePriseDeVue,
+				I.PrixHT, I.camera, I.longueurFocale, I.ouverture, I.tpsExpo, I.sensibiliteISO,
+  				I.clefAcces, I.visibilite, I.id_collection, I.id_photographe, I.id_theme, I.auteur
+				FROM image I, tag T, posseder IT WHERE I.id_image=IT.id_image AND IT.id_tag=T.id_tag ';
+		
+		// tags filter
+		$sql .= " AND (T.label LIKE '%".$search['0']."%'";
+		$sql .= " OR I.titre LIKE '%".array_shift($search)."%'";
+		foreach ($search as $word) {
+			$sql .= " OR T.label LIKE '%".$word."%'";
+			$sql .= " OR I.titre LIKE '%".$word."%'";
+		}
+		$sql .= ")";
+		
+		// themes filter
+		$NB_THEMES = 16;
+	  $themes = array();
+		for($i = 1; $i <= $NB_THEMES; $i++) {
+			if(isset($_POST['theme-'.$i]) && $_POST['theme-'.$i] == 'true') {
+				array_push($themes, $i);
+			}
+		}
+		if(count($themes) > 0) {
+			$sql .= ' AND (';
+			$sql .= 'I.id_theme = '.array_shift($themes);
+			while(count($themes) > 0) {
+		  	$sql .= ' OR I.id_theme = '.array_shift($themes);
+	  	}
+			$sql .= ')';
+		}
+		
+		// price filter
+	  if(isset($_POST['price-min'])) {
+		  $priceMin = preg_replace("/[^0-9]/", "", $_POST['price-min']);
+	  } else {
+			$priceMin = '';
+		}
+	  if(isset($_POST['price-min'])) {
+			$priceMax = preg_replace("/[^0-9]/", "", $_POST['price-max']);
+	  } else {
+	  	$priceMax = '';
+		}
+	  if($priceMin == '') {
+		  $priceMin = 0;
+	  }
+	  if($priceMax == '') {
+			$priceMax = 9999999;
+	  }
+	  $sql .= " AND (prixHT >= $priceMin AND prixHT <= $priceMax)";
+	  
+	  // order by
+		if(isset($_POST['sort'])) {
+			$sql .= ' ORDER BY ';
+			switch($_POST['sort']) {
+				case 'oldest':
+					$sql .= 'I.datePriseDeVue';
+					break;
+				case 'newest':
+					$sql .= 'I.datePriseDeVue DESC';
+					break;
+				case 'cheapest':
+					$sql .= 'I.prixHT';
+					break;
+				case 'costliest':
+					$sql .= 'I.prixHT DESC';
+			}
+		}
+		
+	  $sql .= ';';
+		
+		// database call
+		$dao = new DAO();
+		$imgs = $dao->getImages($sql);
+		
+		//
+	}
 
 ?>
 
@@ -15,247 +118,55 @@
 
 <?php require('./_header.php'); ?>
 <section id="header-offset"></section>
-
-<?php	require('./_search.php'); ?>
-
-<main id="results">
-	<aside>
-		<fieldset class="chkfields white">
-			<h1>Trier par...</h1>
-			<label>
-				<input type="radio" name="sort" value="oldest">
-				<span class="cell-radio"><span class="fill-radio"></span></span>
-				du plus ancien au plus récent
-			</label>
-			<label>
-				<input type="radio" name="sort" value="newest">
-				<span class="cell-radio"><span class="fill-radio"></span></span>
-				du plus récent au plus ancien
-			</label>
-			<label>
-				<input type="radio" name="sort" value="relevant">
-				<span class="cell-radio"><span class="fill-radio"></span></span>
-				pertinence
-			</label>
-			<label>
-				<input type="radio" name="sort" value="cheapest">
-				<span class="cell-radio"><span class="fill-radio"></span></span>
-				du moins cher au plus cher
-			</label>
-			<label>
-				<input type="radio" name="sort" value="costliest">
-				<span class="cell-radio"><span class="fill-radio"></span></span>
-				du plus cher au moins cher
-			</label>
-		</fieldset>
-		<fieldset class="chkfields white wrap">
-			<h1>Filtrer par...</h1>
-			<h2>Thème(s)</h2>
-			<div class="flex-wrap flexV" style="max-height: 16em; align-items: flex-start;">
-				<label>
-					<input type="checkbox" name="theme" value="science">
-					<span class="cell-chk"><span class="fill-chk"></span></span>
-					Science
-				</label>
-				<label>
-					<input type="checkbox" name="theme" value="technologie">
-					<span class="cell-chk"><span class="fill-chk"></span></span>
-					Technologie
-				</label>
-				<label>
-					<input type="checkbox" name="theme" value="architecture">
-					<span class="cell-chk"><span class="fill-chk"></span></span>
-					Architecture
-				</label>
-				<label>
-					<input type="checkbox" name="theme" value="abstrait">
-					<span class="cell-chk"><span class="fill-chk"></span></span>
-					Abstrait
-				</label>
-				<label>
-					<input type="checkbox" name="theme" value="sport">
-					<span class="cell-chk"><span class="fill-chk"></span></span>
-					Sport
-				</label>
-				<label>
-					<input type="checkbox" name="theme" value="culture">
-					<span class="cell-chk"><span class="fill-chk"></span></span>
-					Culture
-				</label>
-				<label>
-					<input type="checkbox" name="theme" value="nature">
-					<span class="cell-chk"><span class="fill-chk"></span></span>
-					Nature
-				</label>
-				<label>
-					<input type="checkbox" name="theme" value="musique">
-					<span class="cell-chk"><span class="fill-chk"></span></span>
-					Musique
-				</label>
-				<label>
-					<input type="checkbox" name="theme" value="urbain">
-					<span class="cell-chk"><span class="fill-chk"></span></span>
-					Urbain
-				</label>
-				<label>
-					<input type="checkbox" name="theme" value="paysage">
-					<span class="cell-chk"><span class="fill-chk"></span></span>
-					Paysage
-				</label>
-				<label>
-					<input type="checkbox" name="theme" value="industrie">
-					<span class="cell-chk"><span class="fill-chk"></span></span>
-					Industrie
-				</label>
-				<label>
-					<input type="checkbox" name="theme" value="Lifestyle">
-					<span class="cell-chk"><span class="fill-chk"></span></span>
-					Lifestyle
-				</label>
-				<label>
-					<input type="checkbox" name="theme" value="nourriture">
-					<span class="cell-chk"><span class="fill-chk"></span></span>
-					Nourriture
-				</label>
-				<label>
-					<input type="checkbox" name="theme" value="art">
-					<span class="cell-chk"><span class="fill-chk"></span></span>
-					Art
-				</label>
-				<label>
-					<input type="checkbox" name="theme" value="voyage">
-					<span class="cell-chk"><span class="fill-chk"></span></span>
-					Voyage
-				</label>
-				<label>
-					<input type="checkbox" name="theme" value="animaux">
-					<span class="cell-chk"><span class="fill-chk"></span></span>
-					Animaux
-				</label>
-			</div>
-		</fieldset>
-
-		<fieldset class="chkfields white wrap">
-			<h2>Orientation(s)</h2>
-			<label>
-				<input type="checkbox" name="orientation" value="horizontal">
-				<span class="cell-chk"><span class="fill-chk"></span></span>
-				Horizontal
-			</label>
-			<label>
-				<input type="checkbox" name="orientation" value="vertical">
-				<span class="cell-chk"><span class="fill-chk"></span></span>
-				Vertical
-			</label>
-			<label>
-				<input type="checkbox" name="orientation" value="panoramique">
-				<span class="cell-chk"><span class="fill-chk"></span></span>
-				Panoramique
-			</label>
-			<label>
-				<input type="checkbox" name="orientation" value="carre">
-				<span class="cell-chk"><span class="fill-chk"></span></span>
-				Carré
-			</label>
-		</fieldset>
-
-		<fieldset>
-			<h2>Prix</h2>
-			<label style="margin-right: 16px;">
-				<input class="txtf-shrt" type="text" name="price-min"><br/>
-				Min.
-			</label>
-			<label>
-				<input class="txtf-shrt" type="text" name="price-max"><br/>
-				Max.
-			</label>
-		</fieldset>
-
-		<fieldset class="chkfields white wrap">
-			<h2>Taille (largeur)</h2>
-			<label>
-				<input type="radio" name="size" value="xlarge">
-				<span class="cell-radio"><span class="fill-radio"></span></span>
-				Très grande (> 2200 px)
-			</label>
-			<label>
-				<input type="radio" name="size" value="large">
-				<span class="cell-radio"><span class="fill-radio"></span></span>
-				Grande (> 1200 px)
-			</label>
-			<label>
-				<input type="radio" name="size" value="medium">
-				<span class="cell-radio"><span class="fill-radio"></span></span>
-				Moyenne (> 700 px)
-			</label>
-			<label>
-				<input type="radio" name="size" value="small">
-				<span class="cell-radio"><span class="fill-radio"></span></span>
-				Petite (< 700 px)
-			</label>
-		</fieldset>
-	</aside>
-	<div id="results-panel">
-		<div id="results-imgs">
-			<div class="results-column">
-				<a href="">
-					<img src="./public/images/pexels-photo-210243.jpg">
-				</a>
-				<a href="">
-					<img src="./public/images/pexels-photo-210227.jpg">
-				</a>
-				<a href="">
-					<img src="./public/images/pexels-photo-556664.jpg">
-				</a>
-				<a href="">
-					<img src="./public/images/pexels-photo-596170.jpg">
-				</a>
-			</div>
-			<div class="results-column">
-				<a href="">
-					<img src="./public/images/pexels-photo-572226.jpg">
-				</a>
-				<a href="">
-					<img src="./public/images/pexels-photo-878251.jpg">
-				</a>
-				<a href="">
-					<img src="./public/images/pexels-photo-965153.jpg">
-				</a>
-				<a href="">
-					<img src="./public/images/pexels-photo-1087720.jpg">
-				</a>
-			</div>
-			<div class="results-column">
-				<a href="">
-					<img src="./public/images/pexels-photo-1089199.jpg">
-				</a>
-				<a href="">
-					<img src="./public/images/pexels-photo-1443867.jpg">
-				</a>
-				<a href="">
-					<img src="./public/images/pexels-photo-1606407.jpg">
-				</a>
-				<a href="">
-					<img src="./public/images/pexels-photo-325752.jpg">
-				</a>
-			</div>
-			<div class="results-column">
-				<a href="">
-					<img src="./public/images/pexels-photo-1606407.jpg">
-				</a>
-				<a href="">
-					<img src="./public/images/pexels-photo-572226.jpg">
-				</a>
-				<a href="">
-					<img src="./public/images/pexels-photo-596170.jpg">
-				</a>
-				<a href="">
-					<img src="./public/images/pexels-photo-556664.jpg">
-				</a>
+<form action="#" method="post">
+	<section id="search" class="bg-img-images">
+		<div id="search-content" class="container-fluid">
+			<div id="search-title">Explorer</div>
+			<div id="search-bar" class="flexH">
+				<button name="submit" type="submit"><img src="./public/assets/icon-search.svg"></button>
+				<input class="form-control" name="search" type="text" placeholder="Rechercher..." value="<?= $form['search'] ?>">
 			</div>
 		</div>
-	</div>
-</main>
+		<script src="public/js/search-sticky-onscroll.js"></script>
+	</section>
+	
+	<main id="results">
+	  <?php require('./_aside-results.php') ?>
+		<div id="results-panel">
+			<div id="results-imgs">
+				<div class="results-column">
+			<?php
+				for($i = 0; $i < count($imgs); $i+=4) {
+					echo '<img src="./public/images/'.$imgs[$i]['filename'].'">';
+				}
+			?>
+				</div>
+				<div class="results-column">
+			<?php
+				for($i = 1; $i < count($imgs); $i+=4) {
+					echo '<img src="./public/images/'.$imgs[$i]['filename'].'">';
+				}
+			?>
+				</div>
+				<div class="results-column">
+			<?php
+				for($i = 2; $i < count($imgs); $i+=4) {
+					echo '<img src="./public/images/'.$imgs[$i]['filename'].'">';
+				}
+			?>
+				</div>
+				<div class="results-column">
+			<?php
+				for($i = 3; $i < count($imgs); $i+=4) {
+					echo '<img src="./public/images/'.$imgs[$i]['filename'].'">';
+				}
+			?>
+				</div>
+			</div>
+		</div>
+	</main>
+
+</form>
 
 <script src="public/js/results-panel-img-wrap.js"></script>
 
