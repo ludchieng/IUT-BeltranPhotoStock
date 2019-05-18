@@ -26,6 +26,16 @@
 			return unserialize($_SESSION['user']);
 		}
 		
+		static public function getAuthenticatedUser() {
+			SessionManager::start();
+			$user = unserialize($_SESSION['user']);
+			if($user instanceof Client || $user instanceof Photographer || $user instanceof Admin) {
+				return $user;
+			} else {
+				return null;
+			}
+		}
+		
 		static public function getUserType() {
 			SessionManager::start();
 			$user = SessionManager::getUser();

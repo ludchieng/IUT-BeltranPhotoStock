@@ -18,12 +18,12 @@
 		$user = SessionManager::getUser();
 	}
 	if(!isset($userType)) {
-	  $userType = SessionManager::getUserType();
+		$userType = SessionManager::getUserType();
 	}
 	
 	// Initialize view variables
 	if($user instanceof User) {
-	  $userData = $user->getData();
+		$userData = $user->getData();
 	}
 	if(isset($userData['prenom'], $userData['nom'])) {
 		$view['userName'] = $userData['prenom'].' '.$userData['nom'];
@@ -102,7 +102,7 @@
 													<div class="nav-icon">
 														<img src="./public/assets/icon-upload.svg">
 													</div>
-													<span class="alt-collapsed">Ajouter des photos</span>
+													<span class="alt-collapsed">Ajouter des images</span>
 												</a>
 											</li>
 											<li class="navbar-account">
@@ -128,7 +128,32 @@
 					break;
 				case 'admin':
 					?>
-					
+									<div class="collapse navbar-collapse" id="myNavbar">
+										<ul class="nav navbar-nav">
+										</ul>
+										<ul class="nav navbar-nav navbar-right">
+											<li><a href="./index.php">Images</a></li>
+											<li><a href="./events.php">Événements</a></li>
+											<li><a href="./admin-photographers.php">Photographes</a></li>
+											<li><a href="./admin-clients.php">Clients</a></li>
+											<li class="navbar-account">
+												<a href="./admin.php">
+													<div class="nav-icon">
+														<img src="./public/assets/icon-admin.svg">
+													</div>
+													<span class="alt-collapsed">Espace administration</span>
+												</a>
+											</li>
+											<li>
+												<a href="./logout.php">
+													<div class="nav-icon">
+														<img src="./public/assets/icon-logout.svg">
+													</div>
+													<span class="alt-collapsed">Se déconnecter</span>
+												</a>
+											</li>
+										</ul>
+									</div>
 					<?php
 					break;
 				default:
@@ -150,7 +175,6 @@
 													</div>
 													<span class="alt-collapsed">S'identifier</span>
 												</a>
-											
 											</li>
 										</ul>
 									</div>

@@ -12,10 +12,8 @@
 	require_once('exceptions/DisabledAccountException.php');
 	use \BeltranPhotoStock\Model\DAO;
 	require_once('model/DAO.php');
-	use \BeltranPhotoStock\Model\Client;
-	require_once('model/Client.php');
-	use \BeltranPhotoStock\Model\Photographer;
-	require_once('model/Photographer.php');
+	use \BeltranPhotoStock\Model\Admin;
+	require_once('model/Admin.php');
 	
 	// Initialize view variables
 	$view['message'] = '';
@@ -25,47 +23,20 @@
 		$form['email-input'] = $_POST['email-input'];
 	}
 	
-	$form['user-input-chk-state'] = '';
-	if (isset($_POST['user-input']) && $_POST['user-input'] == 'photographer') {
-		$form['user-input-chk-state'] = 'checked';
-	}
-	
 	//Authenticate user
 	if(isset($_POST['submit'])) {
-		//Get user type
-		if(isset($_POST['user-input']) && $_POST['user-input'] == 'photographer') {
-			$logInAs = 'photographer';
-		} else {
-			$logInAs = 'client';
-		}
-		
 		//Check password
 		if($_POST['email-input'] != '' && $_POST['password-input'] != '') {
 			$auth = new Authentificator();
 			try {
 				//Verify Login name
-				switch($logInAs) {
-					case 'client':
-						$idUser = $auth->loginClient($_POST['email-input'], $_POST['password-input']);
-						break;
-					case 'photographer':
-						$idUser = $auth->loginPhotographer($_POST['email-input'], $_POST['password-input']);
-						break;
-				}
+				$idUser = $auth->loginAdmin($_POST['email-input'], $_POST['password-input']);
 				//Process returned result
-				if ($idUser != false) {
+				if($idUser != false) {
 					$view['message'] = '<div class="txt-green">Authentification réussie.</div>';
 					$dao = new DAO();
-					switch($logInAs) {
-						case 'client':
-							SessionManager::set('user',$dao->getClientById($idUser));
-							header("Location: ./client.php");
-							break;
-						case 'photographer':
-							SessionManager::set('user',$dao->getPhotographerById($idUser));
-							header("Location: ./photographer.php");
-							break;
-					}
+					SessionManager::set('user',$dao->getAdminById($idUser));
+					header("Location: ./admin.php");
 				} else {
 					$view['message'] = '<div class="txt-red">Authentification échouée.</div>';
 				}
@@ -89,7 +60,7 @@
 <?php //###################################################### ?>
 
 
-<?php $htmlTitle = "Connexion — BeltranPhotoStock"; ?>
+<?php $htmlTitle = "Administration — BeltranPhotoStock"; ?>
 <?php $htmlSpecificCSS = ""; ?>
 
 
@@ -101,18 +72,9 @@
 
 <main>
 	<div class="block">
-		<div class="block-title">Connexion</div>
+		<div class="block-title">Administration</div>
 		<div class="block-content">
-			<form action="login.php" method="post">
-				
-				<div class="form-group flexH flex-align-center">
-					<div class="form-switch-left-label">Client</div>
-					<label class="form-switch">
-						<input name="user-input" type="checkbox" value="photographer" <?= $form['user-input-chk-state'] ?>>
-						<span class="form-switch-slider-round"></span>
-					</label>
-					<div class="form-switch-right-label">Photographe</div>
-				</div>
+			<form action="login-admin.php" method="post">
 				
 				<div class="form-group">
 					<label>Email*</label>
@@ -127,8 +89,7 @@
 		  <?= $view['message'] ?>
 				
 				<div class="form-group flexH flex-align-justify">
-					<a class="form-signup" href="./signup.php">Pas encore inscrit ?</a>
-					<input class="btn btn-default btn-blue-dark" name="submit" type="submit" value="Se connecter">
+					<input class="btn btn-default btn-blue-dark" name="submit" type="submit" value="S'authentifier">
 				</div>
 			</form>
 		</div>

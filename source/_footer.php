@@ -55,7 +55,7 @@
           <li><a href=""><img src="./public/assets/icon-facebook.svg"></a></li>
         </ul>
         <h1>Administration</h1>
-        <a href="#">Connexion</a>
+        <a href="./login-admin.php">Connexion</a>
       </div>
     </div>
   </div>
