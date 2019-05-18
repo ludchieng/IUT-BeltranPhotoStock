@@ -28,7 +28,7 @@
 	if(isset($userData['prenom'], $userData['nom'])) {
 		$view['userName'] = $userData['prenom'].' '.$userData['nom'];
 	}
-
+	
 ?>
 
 
@@ -49,6 +49,7 @@
 		<?php
 			switch($userType) {
 				case 'client':
+					$view['cart-count'] = count($user->getCart());
 					?>
 									<div class="collapse navbar-collapse" id="myNavbar">
 										<ul class="nav navbar-nav">
@@ -63,6 +64,7 @@
 													<div class="nav-icon">
 														<img src="./public/assets/icon-panier.svg">
 													</div>
+													<span id="cart-count"><?= $view['cart-count'] ?></span>
 													<span class="alt-collapsed">Panier d'achat</span>
 												</a>
 											</li>

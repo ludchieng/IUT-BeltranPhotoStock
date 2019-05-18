@@ -39,6 +39,20 @@
     color: var(--grey-text);
 }
 
+#img-price {
+    margin: 0 0 12px 0;
+    font-size: 24px;
+}
+
+#info-addToCart {
+    background-color: rgba(140, 255, 141, 0.22);
+    margin-bottom: 16px;
+    padding: 9.5px 0px;
+    font-size: 18px;
+    text-align: center;
+    color: var(--green-grass);
+}
+
 #btn-add-cart {
     margin-bottom: 16px;
     width: 100%;

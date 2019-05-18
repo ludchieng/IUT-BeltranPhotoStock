@@ -49,12 +49,16 @@
 .item-img {
   margin-left: 12px;
   width: 250px;
+  background-color: #FAFAFA;
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.2);
 }
 .item-img img {
+  display: block;
+  margin: 0 auto;
   width: auto;
   height: auto;
   max-height: 160px;
-  max-width: 250px;
+  max-width: 100%;
 }
 
 

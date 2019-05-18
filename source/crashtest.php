@@ -14,9 +14,12 @@
 	use \BeltranPhotoStock\Model\Client;
 	require_once('model/Client.php');
 	
-	$client = new Client(array("oi boi"));
-	SessionManager::set('c', $client);
-	echo SessionManager::get('c')->getData()[0];
+	$user = SessionManager::getAuthenticatedUser();
+	$cart = $user->getCart();
+	
+	echo count($cart);
+	echo $cart[0];
+	
 ?>
 
 

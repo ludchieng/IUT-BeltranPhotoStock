@@ -1,5 +1,19 @@
 <?php
-
+	//Include dependencies
+	use \BeltranPhotoStock\Model\SessionManager;
+	require_once('model/SessionManager.php');
+	use \BeltranPhotoStock\Model\Client;
+	require_once('model/Client.php');
+	use \BeltranPhotoStock\Model\CartItem;
+	require_once('model/CartItem.php');
+	use \BeltranPhotoStock\Model\DAO;
+	require_once('model/DAO.php');
+	
+	$user = SessionManager::getAuthenticatedUser();
+	if(! $user instanceof Client) {
+		header('Location: ./login.php');
+	}
+	$cart = $user->getCart();
 ?>
 
 
@@ -17,79 +31,111 @@
 <section id="header-offset"></section>
 
 <main class="user-area">
-  <?php	require('./_aside-client.php'); ?>
-  <section>
-    <div class="w1000">
-
-      <div class="flexH flex-align-justify">
-        <h1>Mon panier</h1>
-        <form class="flexH" action="#" method="post">
-          <button id="btn-empty" class="btn btn-default btn-blue-dark" name="submit" type="submit" value="empty">Vider le panier</button>
-          <button id="btn-order" class="btn btn-default btn-green" name="submit" type="submit" value="order">Passer commande</button>
-          <div id="order-totalprice">
-            <div class="txt-blue-hard">Total TTC</div>
-            <div>168,00 EUR</div>
-          </div>
-        </form>
-      </div>
-      <span class="separator"></span>
-
-      <form action="#" method="post">
-
-        <div class="block-content cart-item">
-          <div class="item-buttons">
-            <button class="item-buttons-delete" type="submit"><img src="./public/assets/icon-delete.svg"></button>
-            <button class="item-buttons-duplicate" type="submit"><img src="./public/assets/icon-add.svg"></button>
-          </div>
-          <div class="item-img">
-            <img src=".\public\images\landscape-scenic-going-to-the-sun-road-rocky-mountains-163550.jpg">
-          </div>
-          <div class="item-details">
-            <div class="item-title">
-              Constias o dolor officia aut se malis excepteur imitarentur
-            </div>
-            <div class="item-author">
-              aliqua cohaerescant
-            </div>
-            <div class="item-label">
-              Quantité :
-              <input class="form-control form-control-sm" name="quantity" type="number">
-            </div>
-            <div class="item-label">
-              Support :
-              <select class="form-control form-control-sm">
-                <option>Papier photo</option>
-                <option>Toile</option>
-              </select>
-            </div>
-            <div class="item-label">
-              Dimension :
-              <select class="form-control form-control-sm">
-                <option>10x15</option>
-                <option>15x17</option>
-                <option>20x30</option>
-              </select>
-            </div>
-          </div>
-          <div class="item-prices">
-            <div class="item-price-total">
-              84,00 EUR
-            </div>
-            <div class="item-price-element">
-              <div class="item-price-title">Photo</div>
-              <div class="item-price-value">12,00 EUR/u</div>
-            </div>
-            <div class="item-price-element">
-              <div class="item-price-title">Support</div>
-              <div class="item-price-value">30,00 EUR/u</div>
-            </div>
-          </div>
-        </div>
-
-      </form>
-
-    </div>
-  </section>
+	<?php	require('./_aside-client.php'); ?>
+	<section>
+		<div class="w1000">
+		
+		<?php ob_start(); ?>
+		
+		<?php
+			$index = 0;
+			$priceTotal = 0;
+			foreach ($cart as $item) {
+				$img = DAO::getImageById($item->getIdImage());
+				$support['prixHT'] = '0.10';
+				
+				$itemPriceTotal = $img['prixHT'] + $support['prixHT'];
+				$priceTotal += $itemPriceTotal;
+				
+				$view['item-price-image'] = str_replace('.',',',number_format($img['prixHT'], 2));
+				$view['item-price-support'] = str_replace('.',',',number_format($support['prixHT'], 2));
+				$view['item-price-total'] = str_replace('.',',',number_format($itemPriceTotal, 2));
+				?>
+							<form id="<?= 'cart-item-'.$index ?>" action="./cartOperations.php?indexItem=<?= $index ?>" method="post">
+								
+								<div class="block-content cart-item">
+									<div class="item-buttons">
+										<button class="item-buttons-delete" type="submit" name="submit-item" value="del"><img src="./public/assets/icon-delete.svg"></button>
+										<button class="item-buttons-duplicate" type="submit" name="submit-item" value="dup"><img src="./public/assets/icon-add.svg"></button>
+									</div>
+									<div class="item-img">
+										<img src=".\public\images\<?= $img['filename'] ?>">
+									</div>
+									<div class="item-details">
+										<a class="item-title" href="./image.php?id_image=<?= $img['id_image'] ?>">
+						<?= $img['titre'] ?>
+										</a>
+										<div class="item-author">
+						<?= $img['auteur'] ?>
+										</div>
+										<div class="item-label">
+											Quantité :
+											<input class="form-control form-control-sm" name="quantity" type="number" value="1">
+										</div>
+										<div class="item-label">
+											Support :
+											<select class="form-control form-control-sm">
+												<option>Papier photo</option>
+												<option>Toile</option>
+											</select>
+										</div>
+										<div class="item-label">
+											Dimension :
+											<select class="form-control form-control-sm">
+												<option>10x15</option>
+												<option>15x17</option>
+												<option>20x30</option>
+											</select>
+										</div>
+									</div>
+									<div class="item-prices">
+										<div class="item-price-total">
+						<?= $view['item-price-total'] ?> EUR/u
+										</div>
+										<div class="item-price-element">
+											<div class="item-price-title">Image</div>
+											<div class="item-price-value"><?= $view['item-price-image'] ?> EUR/u</div>
+										</div>
+										<div class="item-price-element">
+											<div class="item-price-title">Support</div>
+											<div class="item-price-value"><?= $view['item-price-support'] ?> EUR/u</div>
+										</div>
+									</div>
+								</div>
+							
+							</form>
+				<?php
+				$index++;
+			}
+		?>
+		
+		<?php $htmlCartItems = ob_get_clean(); ?>
+		
+		<?php
+			if($index == 0) {
+		  	$view['btn-order-disabled'] = 'disabled';
+			} else {
+		  	$view['btn-order-disabled'] = '';
+			}
+			$view['price-total'] = str_replace('.',',',number_format($priceTotal, 2));
+		?>
+			<div class="flexH flex-align-justify">
+				<h1>Mon panier</h1>
+				<form class="flexH" action="cartOperations.php" method="post">
+					<button id="btn-empty" class="btn btn-default btn-blue-dark" name="submit-cart" type="submit" value="reset">Vider le panier</button>
+					<button id="btn-order" class="btn btn-default btn-green" name="submit-cart" type="submit" value="order" <?= $view['btn-order-disabled'] ?>>Passer commande</button>
+					<div id="order-totalprice">
+						<div class="txt-blue-hard">Total TTC</div>
+						<div><?= $view['price-total'] ?> EUR</div>
+					</div>
+				</form>
+			</div>
+			<span class="separator"></span>
+		
+		<?= $htmlCartItems ?>
+		
+		</div>
+	</section>
 </main>
 
 

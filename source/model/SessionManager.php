@@ -1,6 +1,15 @@
 <?php
 	namespace BeltranPhotoStock\Model;
 	
+	use \BeltranPhotoStock\Model\Visitor;
+	require_once('model/Visitor.php');
+	use \BeltranPhotoStock\Model\Client;
+	require_once('model/Client.php');
+	use \BeltranPhotoStock\Model\Photographer;
+	require_once('model/Photographer.php');
+	use \BeltranPhotoStock\Model\Admin;
+	require_once('model/Admin.php');
+	
 	class SessionManager {
 		static public function start() {
 			if(session_status() == PHP_SESSION_NONE) {

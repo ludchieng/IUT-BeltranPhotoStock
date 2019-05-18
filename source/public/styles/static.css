@@ -54,6 +54,15 @@ header .nav-icon {
 header .nav-icon img {
 	margin-bottom: 3px;
 }
+header #cart-count {
+	position: absolute;
+	transform: translateX(-8px) translateY(-10px);
+	padding: 0px 5px;
+	border-radius: 6px;
+	font-family: FiraSansBold;
+	font-size: 0.9em;
+	background-color: rgba(255,90,60,0.9);
+}
 
 
 /* SEARCH */
@@ -95,7 +104,7 @@ header .nav-icon img {
 	margin: auto 0;
 }
 #search input {
-  font-style: FiraSansLight, sans-serif;
+  	font-family: FiraSansLight, sans-serif;
 	font-size: 18px;
 	border-radius: 0 6px 6px 0;
 }
