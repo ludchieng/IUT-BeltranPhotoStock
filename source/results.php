@@ -5,23 +5,31 @@
 	require_once('model/DAO.php');
 	
 	// Initialize view variables
-	function getGet($inputName) {
+	function getPost($inputName) {
 		if(isset($_POST[$inputName])) {
 			return $_POST[$inputName];
 		} else {
 			return '';
 		}
 	}
-	$form['search'] = getGet('search');
-	$form['price-min'] = getGet('price-min');
-	$form['price-max'] = getGet('price-max');
+	$form['search'] = getPost('search');
+	$form['price-min'] = preg_replace("/[^0-9]/", "", getPost('price-min'));
+	$form['price-max'] = preg_replace("/[^0-9]/", "", getPost('price-max'));
+	
+	// Retrieve idTheme from GET variable
+	if(isset($_GET['id_theme'])) {
+		$themes = array($_GET['id_theme']);
+		$search = "";
+	}
+	// Retrieve search from POST variable
+	if(isset($_POST['search'])) {
+	  // Escape special chars
+	  $forbiddenChar = [';', '(', ')', '"', ',', '<', '>'];
+	  $search = str_replace($forbiddenChar, "", $_POST['search']);
+	}
 	
 	// Load images
-	if(isset($_POST['search'])) {
-		// Escape special chars
-		$forbiddenChar = [';', '(', ')', '"', ',', '<', '>'];
-		$search = str_replace($forbiddenChar, "", $_POST['search']);
-		
+	if(isset($_POST['search']) || isset($_GET['id_theme'])) {
 		// Explode the query search to an array of words
 		$search = explode(" ",$search);
 		
@@ -42,10 +50,12 @@
 		
 		// themes filter
 		$NB_THEMES = 16;
-	  $themes = array();
-		for($i = 1; $i <= $NB_THEMES; $i++) {
-			if(isset($_POST['theme-'.$i]) && $_POST['theme-'.$i] == 'true') {
-				array_push($themes, $i);
+		if(!isset($themes)) {
+			$themes = array();
+			for($i = 1; $i <= $NB_THEMES; $i++) {
+				if(isset($_POST['theme-'.$i]) && $_POST['theme-'.$i] == 'true') {
+					array_push($themes, $i);
+				}
 			}
 		}
 		if(count($themes) > 0) {
@@ -99,10 +109,15 @@
 		// database call
 		$dao = new DAO();
 		$imgs = $dao->getImages($sql);
-		
-		//
+	} else {
+		$imgs = array();
 	}
-
+	
+	function echoImg($filename, $id) {
+		echo '<a href="./image.php?id_image='. $id .'">';
+	  echo '<img src="./public/images/'.$filename.'">';
+	  echo '</a>';
+	}
 ?>
 
 
@@ -118,7 +133,7 @@
 
 <?php require('./_header.php'); ?>
 <section id="header-offset"></section>
-<form action="#" method="post">
+<form action="./results.php" method="post">
 	<section id="search" class="bg-img-images">
 		<div id="search-content" class="container-fluid">
 			<div id="search-title">Explorer</div>
@@ -137,28 +152,28 @@
 				<div class="results-column">
 			<?php
 				for($i = 0; $i < count($imgs); $i+=4) {
-					echo '<img src="./public/images/'.$imgs[$i]['filename'].'">';
+					echoImg($imgs[$i]['filename'], $imgs[$i]['id_image']);
 				}
 			?>
 				</div>
 				<div class="results-column">
 			<?php
 				for($i = 1; $i < count($imgs); $i+=4) {
-					echo '<img src="./public/images/'.$imgs[$i]['filename'].'">';
+					echoImg($imgs[$i]['filename'], $imgs[$i]['id_image']);
 				}
 			?>
 				</div>
 				<div class="results-column">
 			<?php
 				for($i = 2; $i < count($imgs); $i+=4) {
-					echo '<img src="./public/images/'.$imgs[$i]['filename'].'">';
+					echoImg($imgs[$i]['filename'], $imgs[$i]['id_image']);
 				}
 			?>
 				</div>
 				<div class="results-column">
 			<?php
 				for($i = 3; $i < count($imgs); $i+=4) {
-					echo '<img src="./public/images/'.$imgs[$i]['filename'].'">';
+					echoImg($imgs[$i]['filename'], $imgs[$i]['id_image']);
 				}
 			?>
 				</div>

@@ -2,7 +2,7 @@
   //Load user profile picture
   if(!isset($view['user-picture'])) {
     if(isset($_SESSION['user'])) {
-      $user = $_SESSION['user'];
+      $user = unserialize($_SESSION['user']);
       $view['user-picture'] = $user->getPictureSrc();
     } else {
       $view['user-picture'] = "./public/assets/img-profile-picture.png";

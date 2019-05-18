@@ -231,7 +231,51 @@
   		}
   		
   		public function getImages($sql) {
-			$statement = $this->db->query($sql);
-			return $statement->fetchAll();
+			if($statement = $this->db->query($sql)) {
+				return $statement->fetchAll();
+			} else {
+				return array();
+			}
+		}
+		
+		public function getImageById($id) {
+			$sql = 'SELECT I.id_image, I.filename, I.titre, I.dateCreation, I.datePriseDeVue,
+				I.prixHT, I.camera, I.longueurFocale, I.ouverture, I.tpsExpo, I.sensibiliteISO,
+  				I.clefAcces, I.visibilite, I.id_collection, I.id_photographe, I.id_theme, I.auteur
+				FROM image I WHERE I.id_image= ? ;';
+			$statement = $this->db->prepare($sql);
+			$statement->execute(array($id));
+			$res = $statement->fetchAll();
+			if(is_array($res) && count($res) > 0) {
+				return $res[0];
+			} else {
+				return array();
+			}
+		}
+		
+		public function getImageTagsById($id) {
+			$sql = 'SELECT T.id_tag, T.label FROM tag T, posseder IT
+				WHERE T.id_tag = IT.id_tag AND IT.id_image= ? ;';
+			$statement = $this->db->prepare($sql);
+			$statement->execute(array($id));
+			$res = $statement->fetchAll();
+			if(is_array($res) && count($res) > 0) {
+				return $res;
+			} else {
+				return array();
+			}
+		}
+		
+		public function getImageColorsById($id) {
+			$sql = 'SELECT C.hexcode FROM comporter C
+				WHERE C.id_image= ? ;';
+			$statement = $this->db->prepare($sql);
+			$statement->execute(array($id));
+			$res = $statement->fetchAll();
+			if(is_array($res) && count($res) > 0) {
+				return $res;
+			} else {
+				return array();
+			}
 		}
 	}

@@ -24,8 +24,8 @@
       <div class="flexH flex-align-justify">
         <h1>Mon panier</h1>
         <form class="flexH" action="#" method="post">
-          <button id="btn-empty" class="btn btn-default btn-blue-dark w-fullW" name="submit" type="submit" value="empty">Vider le panier</button>
-          <button id="btn-order" class="btn btn-default btn-green w-fullW" name="submit" type="submit" value="order">Passer commande</button>
+          <button id="btn-empty" class="btn btn-default btn-blue-dark" name="submit" type="submit" value="empty">Vider le panier</button>
+          <button id="btn-order" class="btn btn-default btn-green" name="submit" type="submit" value="order">Passer commande</button>
           <div id="order-totalprice">
             <div class="txt-blue-hard">Total TTC</div>
             <div>168,00 EUR</div>

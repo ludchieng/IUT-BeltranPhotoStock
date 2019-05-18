@@ -1,5 +1,10 @@
 <?php
-
+	// Import dependencies
+	use \BeltranPhotoStock\Model\SessionManager;
+	require_once('model/SessionManager.php');
+	
+	session_start();
+	
 ?>
 
 

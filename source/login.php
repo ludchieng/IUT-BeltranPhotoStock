@@ -1,7 +1,7 @@
 <?php
-	session_start();
-	
 	//Include dependencies
+	use \BeltranPhotoStock\Model\SessionManager;
+	require_once('model/SessionManager.php');
 	use \BeltranPhotoStock\Model\Authentificator;
 	require_once('model/Authentificator.php');
 	use \BeltranPhotoStock\Exception\DuplicationDBException;
@@ -17,7 +17,7 @@
 	use \BeltranPhotoStock\Model\Photographer;
 	require_once('model/Photographer.php');
 	
-	//Initialize view variables
+	// Initialize view variables
 	$view['message'] = '';
 	
 	$form['email-input'] = '';
@@ -58,11 +58,13 @@
 					$dao = new DAO();
 					switch($logInAs) {
 						case 'client':
-							$_SESSION['user'] = $dao->getClientById($idUser);
+							//$_SESSION['user'] = serialize($dao->getClientById($idUser));
+							SessionManager::set('user',$dao->getClientById($idUser));
 							header("Location: ./client.php");
 							break;
 						case 'photographer':
-							$_SESSION['user'] = $dao->getPhotographerById($idUser);
+							//$_SESSION['user'] = serialize($dao->getPhotographerById($idUser));
+							SessionManager::set('user',$dao->getPhotographerById($idUser));
 							header("Location: ./photographer.php");
 							break;
 					}

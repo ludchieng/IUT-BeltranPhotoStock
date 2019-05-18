@@ -1,3 +1,25 @@
+<?php
+	// Import dependencies
+	use \BeltranPhotoStock\Model\SessionManager;
+	require_once('model/SessionManager.php');
+	use BeltranPhotoStock\Model\Visitor;
+	require_once('./model/Visitor.php');
+	use BeltranPhotoStock\Model\Admin;
+	require_once('./model/Admin.php');
+	use BeltranPhotoStock\Model\Client;
+	require_once('./model/Client.php');
+	use BeltranPhotoStock\Model\Photographer;
+	require_once('./model/Photographer.php');
+	
+	$user = SessionManager::getUser();
+	$userType = SessionManager::getUserType();
+
+?>
+
+
+
+<?php //###################################################### ?>
+
 <?php $htmlTitle = "Index — BeltranPhotoStock"; ?>
 <?php $htmlSpecificCSS = ""; ?>
 
@@ -15,25 +37,25 @@
 		<h1><a href="#">Thèmes</a></h1>
 		<div class="row">
 			<div class="col-xs-6 col-md-3">
-				<a href="#t1">
+				<a href="./results.php?id_theme=5">
 					<img src="./public/assets/img-themes-sport.jpg">
 					<div class="img-caption">Sport</div>
 				</a>
 			</div>
 			<div class="col-xs-6 col-md-3">
-				<a href="#t2">
+				<a href="./results.php?id_theme=15">
 					<img src="./public/assets/img-themes-voyage.jpg">
 					<div class="img-caption">Voyage</div>
 				</a>
 			</div>
 			<div class="col-xs-6 col-md-3">
-				<a href="#t3">
+				<a href="./results.php?id_theme=9">
 					<img src="./public/assets/img-themes-urbain.jpg">
 					<div class="img-caption">Urbain</div>
 				</a>
 			</div>
 			<div class="col-xs-6 col-md-3">
-				<a href="#t4">
+				<a href="./results.php?id_theme=10">
 					<img src="./public/assets/img-themes-paysage.jpg">
 					<div class="img-caption">Paysage</div>
 				</a>
@@ -41,25 +63,25 @@
 		</div>
 		<div class="row">
 			<div class="col-xs-6 col-md-3">
-				<a href="#t5">
+				<a href="./results.php?id_theme=13">
 					<img src="./public/assets/img-themes-nourriture.jpg">
 					<div class="img-caption">Nourriture</div>
 				</a>
 			</div>
 			<div class="col-xs-6 col-md-3">
-				<a href="#t6">
+				<a href="./results.php?id_theme=12">
 					<img src="./public/assets/img-themes-lifestyle.jpg">
 					<div class="img-caption">Lifestyle</div>
 				</a>
 			</div>
 			<div class="col-xs-6 col-md-3">
-				<a href="#t7">
+				<a href="./results.php?id_theme=11">
 					<img src="./public/assets/img-themes-industrie.jpg">
 					<div class="img-caption">Industrie</div>
 				</a>
 			</div>
 			<div class="col-xs-6 col-md-3">
-				<a href="#t8">
+				<a href="./results.php?id_theme=8">
 					<img src="./public/assets/img-themes-musique.jpg">
 					<div class="img-caption">Musique</div>
 				</a>
