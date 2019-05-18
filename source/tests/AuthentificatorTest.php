@@ -17,32 +17,20 @@ class AuthentificatorTest extends TestCase {
   private $ADMIN_VALID = ['a.paradis@dayrep.com','lalala',1];
   private $ADMIN_DISABLED = ['b.bourget@dayrep.com','hihihi',7];
 
-  private $am;
-
-  //Before
-  public function setUp(): void {
-    $this->am = new Authentificator();
-  }
-
-  //After
-  public function tearDown(): void {
-    $this->am = null;
-  }
-
 
 
   public function test_loginClient_EmailCorrect_PasswordCorrect() {
-    $auth = $this->am->loginClient($this->CLIENT_VALID[0], $this->CLIENT_VALID[1]);
+    $auth = Authentificator::loginClient($this->CLIENT_VALID[0], $this->CLIENT_VALID[1]);
     $this->assertEquals($this->CLIENT_VALID[2], $auth);
   }
 
   public function test_loginPhotographer_EmailCorrect_PasswordCorrect() {
-    $auth = $this->am->loginPhotographer($this->PHOTOGRAPHER_VALID[0], $this->PHOTOGRAPHER_VALID[1]);
+    $auth = Authentificator::loginPhotographer($this->PHOTOGRAPHER_VALID[0], $this->PHOTOGRAPHER_VALID[1]);
     $this->assertEquals($this->PHOTOGRAPHER_VALID[2], $auth);
   }
 
   public function test_loginAdmin_EmailCorrect_PasswordCorrect() {
-    $auth = $this->am->loginAdmin($this->ADMIN_VALID[0], $this->ADMIN_VALID[1]);
+    $auth = Authentificator::loginAdmin($this->ADMIN_VALID[0], $this->ADMIN_VALID[1]);
     $this->assertEquals($this->ADMIN_VALID[2], $auth);
   }
 
@@ -50,33 +38,33 @@ class AuthentificatorTest extends TestCase {
 
   public function test_loginClient_EmailIncorrect() {
     $this->expectException(NotFoundDBException::class);
-    $auth = $this->am->loginClient('unvalid@email.foo', 'bar');
+    $auth = Authentificator::loginClient('unvalid@email.foo', 'bar');
   }
 
   public function test_loginPhotographer_EmailIncorrect() {
     $this->expectException(NotFoundDBException::class);
-    $auth = $this->am->loginPhotographer('unvalid@email.foo', 'bar');
+    $auth = Authentificator::loginPhotographer('unvalid@email.foo', 'bar');
   }
 
   public function test_loginAdmin_EmailIncorrect() {
     $this->expectException(NotFoundDBException::class);
-    $auth = $this->am->loginAdmin('unvalid@email.foo', 'bar');
+    $auth = Authentificator::loginAdmin('unvalid@email.foo', 'bar');
   }
 
 
 
   public function test_loginClient_EmailCorrect_PasswordIncorrect() {
-    $auth = $this->am->loginClient($this->CLIENT_VALID[0], 'unvalidPassword');
+    $auth = Authentificator::loginClient($this->CLIENT_VALID[0], 'unvalidPassword');
     $this->assertEquals(0, $auth);
   }
 
   public function test_loginPhotographer_EmailCorrect_PasswordIncorrect() {
-    $auth = $this->am->loginPhotographer($this->PHOTOGRAPHER_VALID[0], 'unvalidPassword');
+    $auth = Authentificator::loginPhotographer($this->PHOTOGRAPHER_VALID[0], 'unvalidPassword');
     $this->assertEquals(0, $auth);
   }
 
   public function test_loginAdmin_EmailCorrect_PasswordIncorrect() {
-    $auth = $this->am->loginAdmin($this->ADMIN_VALID[0], 'unvalidPassword');
+    $auth = Authentificator::loginAdmin($this->ADMIN_VALID[0], 'unvalidPassword');
     $this->assertEquals(0, $auth);
   }
 
@@ -84,16 +72,16 @@ class AuthentificatorTest extends TestCase {
 
   public function test_loginClient_DisabledAccount() {
     $this->expectException(DisabledAccountException::class);
-    $auth = $this->am->loginClient($this->CLIENT_DISABLED[0], $this->CLIENT_DISABLED[1]);
+    $auth = Authentificator::loginClient($this->CLIENT_DISABLED[0], $this->CLIENT_DISABLED[1]);
   }
 
   public function test_loginPhotographer_DisabledAccount() {
     $this->expectException(DisabledAccountException::class);
-    $auth = $this->am->loginPhotographer($this->PHOTOGRAPHER_DISABLED[0], $this->PHOTOGRAPHER_DISABLED[1]);
+    $auth = Authentificator::loginPhotographer($this->PHOTOGRAPHER_DISABLED[0], $this->PHOTOGRAPHER_DISABLED[1]);
   }
   
   public function test_loginAdmin_DisabledAccount() {
     $this->expectException(DisabledAccountException::class);
-    $auth = $this->am->loginAdmin($this->ADMIN_DISABLED[0], $this->ADMIN_DISABLED[1]);
+    $auth = Authentificator::loginAdmin($this->ADMIN_DISABLED[0], $this->ADMIN_DISABLED[1]);
   }
 }

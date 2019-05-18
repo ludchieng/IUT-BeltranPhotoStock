@@ -100,30 +100,19 @@ class DAOTest extends TestCase {
     'disponible' => 1,
     12 => 1
   );
-  private $dao;
-
-  //Before
-  public function setUp(): void {
-    $this->dao = new DAO();
-  }
-
-  //After
-  public function tearDown(): void {
-    $this->dao = null;
-  }
 
 
 
   public function testGetClientById() {
-    $this->assertEquals($this->clientData, $this->dao->getClientById($this->clientData[0])->getData());
+    $this->assertEquals($this->clientData, DAO::getClientById($this->clientData[0])->getData());
   }
 
   public function testGetPhotographerById() {
-    $this->assertEquals($this->photographerData, $this->dao->getPhotographerById($this->photographerData[0])->getData());
+    $this->assertEquals($this->photographerData, DAO::getPhotographerById($this->photographerData[0])->getData());
   }
 
   public function testGetAdminById() {
-    $this->assertEquals($this->adminData, $this->dao->getAdminById($this->adminData[0])->getData());
+    $this->assertEquals($this->adminData, DAO::getAdminById($this->adminData[0])->getData());
   }
 
 
@@ -171,13 +160,13 @@ class DAOTest extends TestCase {
     	12 => 1
     );
 
-    $idClient = $this->dao->addClient(new Client($clientArray));
+    $idClient = DAO::addClient(new Client($clientArray));
     $clientDBData['id_client'] = $idClient;
     $clientDBData[0] = $idClient;
-    $this->assertEquals($clientDBData, $this->dao->getClientById($idClient)->getData());
-    $this->dao->delClient($idClient);
+    $this->assertEquals($clientDBData, DAO::getClientById($idClient)->getData());
+    DAO::delClient($idClient);
     $this->expectException(NotFoundDBException::class);
-    $this->dao->getClientById($idClient);
+    DAO::getClientById($idClient);
   }
 
 
@@ -231,13 +220,13 @@ class DAOTest extends TestCase {
     	14 => 1
     );
 
-    $idPgrpher = $this->dao->addPhotographer(new Photographer($pgrpherArray));
+    $idPgrpher = DAO::addPhotographer(new Photographer($pgrpherArray));
     $pgrpherDBData['id_photographe'] = $idPgrpher;
     $pgrpherDBData[0] = $idPgrpher;
-    $this->assertEquals($pgrpherDBData, $this->dao->getPhotographerById($idPgrpher)->getData());
-    $this->dao->delPhotographer($idPgrpher);
+    $this->assertEquals($pgrpherDBData, DAO::getPhotographerById($idPgrpher)->getData());
+    DAO::delPhotographer($idPgrpher);
     $this->expectException(NotFoundDBException::class);
-    $this->dao->getPhotographerById($idPgrpher);
+    DAO::getPhotographerById($idPgrpher);
   }
 
 
@@ -285,12 +274,12 @@ class DAOTest extends TestCase {
     	12 => 1
     );
 
-    $idAdmin = $this->dao->addAdmin(new Admin($adminArray));
+    $idAdmin = DAO::addAdmin(new Admin($adminArray));
     $adminDBData['id_admin'] = $idAdmin;
     $adminDBData[0] = $idAdmin;
-    $this->assertEquals($adminDBData, $this->dao->getAdminById($idAdmin)->getData());
-    $this->dao->delAdmin($idAdmin);
+    $this->assertEquals($adminDBData, DAO::getAdminById($idAdmin)->getData());
+    DAO::delAdmin($idAdmin);
     $this->expectException(NotFoundDBException::class);
-    $this->dao->getAdminById($idAdmin);
+    DAO::getAdminById($idAdmin);
   }
 }

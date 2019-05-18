@@ -40,7 +40,7 @@ a:focus .img-caption {
 	text-decoration: none;
 }
 a img {
-	box-shadow: 0 0 0px #FFF;
+	box-shadow: 0 0 0 #FFF;
 	transition-duration: 0.15s;
 }
 a img:hover {

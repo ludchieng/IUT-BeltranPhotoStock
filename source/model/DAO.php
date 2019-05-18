@@ -4,26 +4,28 @@
 	require_once('model/Client.php');
 	require_once('model/Photographer.php');
 	
-	use \BeltranPhotoStock\Model\DBConnector;
-	require_once('model/DBConnector.php');
 	use \BeltranPhotoStock\Exception\NotFoundDBException;
 	require_once('exceptions/NotFoundDBException.php');
 	
-	class DAO extends DBConnector {
+	use \BeltranPhotoStock\Model\DBConnector;
+	require_once('model/DBConnector.php');
+	
+	class DAO {
 		
-		public function getClientById($id) {
-			return $this->getUserById('client', $id);
+		static public function getClientById($id) {
+			return DAO::getUserById('client', $id);
 		}
 		
-		public function getPhotographerById($id) {
-			return $this->getUserById('photographer', $id);
+		static public function getPhotographerById($id) {
+			return DAO::getUserById('photographer', $id);
 		}
 		
-		public function getAdminById($id) {
-			return $this->getUserById('admin', $id);
+		static public function getAdminById($id) {
+			return DAO::getUserById('admin', $id);
 		}
 		
-		private function getUserById($userType, $id) {
+		static private function getUserById($userType, $id) {
+			$db = DBConnector::dbConnectAsAdmin();
 			switch($userType) {
 				case 'client':
 					$sql = 'SELECT id_client, civilite, nom, prenom, dateNaissance,
@@ -41,7 +43,7 @@
 						disponible FROM administrateur WHERE id_admin = ? ;';
 					break;
 			}
-			$pdoLink = $this->db->prepare($sql);
+			$pdoLink = $db->prepare($sql);
 			$pdoLink->execute(array($id));
 			$userData = $pdoLink->fetchAll();
 			if(count($userData) == 0) {
@@ -63,7 +65,8 @@
 		 * @param  Client $client User to add into the database
 		 * @return int            Primary key of the new row
 		 */
-		public function addClient($client) {
+		static public function addClient($client) {
+			$db = DBConnector::dbConnectAsAdmin();
 			$c = $client->getData();
 			$c = array(
 				$c['civilite'],
@@ -83,13 +86,13 @@
 				$sql = 'INSERT INTO client(civilite, nom, prenom, dateNaissance,
 					adresse, cp, ville, pays, telephone, email, hashIdentifiants, disponible)
 					VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);';
-				$pdoLink = $this->db->prepare($sql);
+				$pdoLink = $db->prepare($sql);
 				$pdoLink->execute($c);
 			} catch(PDOException $e) {
 				print_r($e->getMessage());
 				die();
 			}
-			return $this->db->query('SELECT LAST_INSERT_ID();')->fetch()[0];
+			return $db->query('SELECT LAST_INSERT_ID();')->fetch()[0];
 		}
 		
 		/**
@@ -97,7 +100,8 @@
 		 * @param  Photographer $pgrpher User to add into the database
 		 * @return int                   Primary key of the new row
 		 */
-		public function addPhotographer($pgrpher) {
+		static public function addPhotographer($pgrpher) {
+			$db = DBConnector::dbConnectAsAdmin();
 			$p = $pgrpher->getData();
 			$p = array(
 				$p['civilite'],
@@ -119,13 +123,13 @@
 				$sql = 'INSERT INTO photographe(civilite, numSiret, ribIBAN, nom,
 					prenom, societe, adresse, cp, ville, pays, telephone, email,
 					hashIdentifiants, disponible) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);';
-				$pdoLink = $this->db->prepare($sql);
+				$pdoLink = $db->prepare($sql);
 				$pdoLink->execute($p);
 			} catch(PDOException $e) {
 				print_r($e-getMessage());
 				die();
 			}
-			return $this->db->query('SELECT LAST_INSERT_ID();')->fetch()[0];
+			return $db->query('SELECT LAST_INSERT_ID();')->fetch()[0];
 		}
 		
 		/**
@@ -133,7 +137,8 @@
 		 * @param  Admin $admin User to add into the database
 		 * @return int          Primary key of the new row
 		 */
-		public function addAdmin($admin) {
+		static public function addAdmin($admin) {
+			$db = DBConnector::dbConnectAsAdmin();
 			$a = $admin->getData();
 			$a = array(
 				$a['civilite'],
@@ -152,34 +157,38 @@
 				$sql = 'INSERT INTO administrateur(civilite, nom, prenom, dateNaissance,
 					adresse, cp, ville, pays, telephone, email, hashIdentifiants, disponible)
 					VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);';
-				$pdoLink = $this->db->prepare($sql);
+				$pdoLink = $db->prepare($sql);
 				$pdoLink->execute($a);
 			} catch(PDOException $e) {
 				print_r($e-getMessage());
 				die();
 			}
-			return $this->db->query('SELECT LAST_INSERT_ID();')->fetch()[0];
+			return $db->query('SELECT LAST_INSERT_ID();')->fetch()[0];
 		}
 		
-		public function delClient($id) {
+		static public function delClient($id) {
+			$db = DBConnector::dbConnectAsAdmin();
 			$sql = 'DELETE FROM client WHERE id_client = ?;';
-			$pdoLink = $this->db->prepare($sql);
+			$pdoLink = $db->prepare($sql);
 			$pdoLink->execute(array($id));
 		}
 		
-		public function delPhotographer($id) {
+		static public function delPhotographer($id) {
+			$db = DBConnector::dbConnectAsAdmin();
 			$sql = 'DELETE FROM photographe WHERE id_photographe = ?;';
-			$pdoLink = $this->db->prepare($sql);
+			$pdoLink = $db->prepare($sql);
 			$pdoLink->execute(array($id));
 		}
 		
-		public function delAdmin($id) {
+		static public function delAdmin($id) {
+			$db = DBConnector::dbConnectAsAdmin();
 			$sql = 'DELETE FROM administrateur WHERE id_admin = ?;';
-			$pdoLink = $this->db->prepare($sql);
+			$pdoLink = $db->prepare($sql);
 			$pdoLink->execute(array($id));
 		}
 		
-		public function getImagesFromSearch($search) {
+		static public function getImagesFromSearch($search) {
+			$db = DBConnector::dbConnectAsAdmin();
 			// Escape special chars
 			$forbiddenChar = [';', '(', ')', '"', ','];
 			$search = str_replace($forbiddenChar, "", $search);
@@ -199,7 +208,7 @@
 				$sql .= " OR I.titre LIKE '%".$word."%'";
 			}
 			$sql .= ");";
-			return $this->getImages($sql);
+			return DAO::getImages($sql);
 			
 			/*
 			$sqlArgs = $search;
@@ -223,27 +232,29 @@
 			
 			print_r($sql);
 			
-			$statement = $this->db->prepare($sql);
+			$statement = $db->prepare($sql);
 			$statement->execute($sqlArgs);
 			
 			return $statement->fetchAll();
 			*/
-  		}
-  		
-  		public function getImages($sql) {
-			if($statement = $this->db->query($sql)) {
+		}
+		
+		static public function getImages($sql) {
+			$db = DBConnector::dbConnectAsAdmin();
+			if($statement = $db->query($sql)) {
 				return $statement->fetchAll();
 			} else {
 				return array();
 			}
 		}
 		
-		public function getImageById($id) {
+		static public function getImageById($id) {
+			$db = DBConnector::dbConnectAsAdmin();
 			$sql = 'SELECT I.id_image, I.filename, I.titre, I.dateCreation, I.datePriseDeVue,
 				I.prixHT, I.camera, I.longueurFocale, I.ouverture, I.tpsExpo, I.sensibiliteISO,
   				I.clefAcces, I.visibilite, I.id_collection, I.id_photographe, I.id_theme, I.auteur
 				FROM image I WHERE I.id_image= ? ;';
-			$statement = $this->db->prepare($sql);
+			$statement = $db->prepare($sql);
 			$statement->execute(array($id));
 			$res = $statement->fetchAll();
 			if(is_array($res) && count($res) > 0) {
@@ -253,10 +264,11 @@
 			}
 		}
 		
-		public function getImageTagsById($id) {
+		static public function getImageTagsById($id) {
+			$db = DBConnector::dbConnectAsAdmin();
 			$sql = 'SELECT T.id_tag, T.label FROM tag T, posseder IT
 				WHERE T.id_tag = IT.id_tag AND IT.id_image= ? ;';
-			$statement = $this->db->prepare($sql);
+			$statement = $db->prepare($sql);
 			$statement->execute(array($id));
 			$res = $statement->fetchAll();
 			if(is_array($res) && count($res) > 0) {
@@ -266,10 +278,11 @@
 			}
 		}
 		
-		public function getImageColorsById($id) {
+		static public function getImageColorsById($id) {
+			$db = DBConnector::dbConnectAsAdmin();
 			$sql = 'SELECT C.hexcode FROM comporter C
 				WHERE C.id_image= ? ;';
-			$statement = $this->db->prepare($sql);
+			$statement = $db->prepare($sql);
 			$statement->execute(array($id));
 			$res = $statement->fetchAll();
 			if(is_array($res) && count($res) > 0) {

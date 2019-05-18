@@ -27,15 +27,13 @@
 	if(isset($_POST['submit'])) {
 		//Check password
 		if($_POST['email-input'] != '' && $_POST['password-input'] != '') {
-			$auth = new Authentificator();
 			try {
 				//Verify Login name
-				$idUser = $auth->loginAdmin($_POST['email-input'], $_POST['password-input']);
+				$idUser = Authentificator::loginAdmin($_POST['email-input'], $_POST['password-input']);
 				//Process returned result
 				if($idUser != false) {
 					$view['message'] = '<div class="txt-green">Authentification réussie.</div>';
-					$dao = new DAO();
-					SessionManager::set('user',$dao->getAdminById($idUser));
+					SessionManager::set('user',DAO::getAdminById($idUser));
 					header("Location: ./admin.php");
 				} else {
 					$view['message'] = '<div class="txt-red">Authentification échouée.</div>';

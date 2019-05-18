@@ -41,28 +41,26 @@
 		
 		//Check password
 		if($_POST['email-input'] != '' && $_POST['password-input'] != '') {
-			$auth = new Authentificator();
 			try {
 				//Verify Login name
 				switch($logInAs) {
 					case 'client':
-						$idUser = $auth->loginClient($_POST['email-input'], $_POST['password-input']);
+						$idUser = Authentificator::loginClient($_POST['email-input'], $_POST['password-input']);
 						break;
 					case 'photographer':
-						$idUser = $auth->loginPhotographer($_POST['email-input'], $_POST['password-input']);
+						$idUser = Authentificator::loginPhotographer($_POST['email-input'], $_POST['password-input']);
 						break;
 				}
 				//Process returned result
 				if ($idUser != false) {
 					$view['message'] = '<div class="txt-green">Authentification réussie.</div>';
-					$dao = new DAO();
 					switch($logInAs) {
 						case 'client':
-							SessionManager::set('user',$dao->getClientById($idUser));
+							SessionManager::set('user',DAO::getClientById($idUser));
 							header("Location: ./client.php");
 							break;
 						case 'photographer':
-							SessionManager::set('user',$dao->getPhotographerById($idUser));
+							SessionManager::set('user',DAO::getPhotographerById($idUser));
 							header("Location: ./photographer.php");
 							break;
 					}
