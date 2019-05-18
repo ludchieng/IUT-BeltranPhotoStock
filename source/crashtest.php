@@ -13,12 +13,20 @@
 	require_once('model/SessionManager.php');
 	use \BeltranPhotoStock\Model\Client;
 	require_once('model/Client.php');
+	use \BeltranPhotoStock\Model\DBConnector;
+	require_once('model/DBConnector.php');
 	
 	$user = SessionManager::getAuthenticatedUser();
 	$cart = $user->getCart();
 	
-	echo count($cart);
-	echo $cart[0];
+	$pass = array(
+	  'Haboutt2
+'
+	);
+	
+	foreach ($pass as $str) {
+	  echo password_hash($str, PASSWORD_BCRYPT).'<br/>';
+	}
 	
 ?>
 

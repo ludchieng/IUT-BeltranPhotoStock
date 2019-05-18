@@ -5,6 +5,8 @@
 	require_once('model/SessionManager.php');
 	use \BeltranPhotoStock\Model\DAO;
 	require_once('model/DAO.php');
+	use \BeltranPhotoStock\Model\Photographer;
+	require_once('model/Photographer.php');
 	
 	// Retrieve usertype
 	$user = SessionManager::getUser();
@@ -30,14 +32,19 @@
 	$view['id_image'] = $img['id_image'];
 	$view['titre'] = $img['titre'];
 	$view['filename'] = $img['filename'];
-	$view['auteur'] = $img['auteur'];
+	$photographer = DAO::getPhotographerById($img['id_photographe'])->getData();
+	$view['photographer'] = $photographer['prenom'].' '.$photographer['nom'];
 	$view['prixHT'] = $img['prixHT'];
 	
+	if(isset($img['datePriseDeVue'])) {
 	$date = explode("-", $img['datePriseDeVue']);
 	$months = ['janv.', 'fév.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.'];
 	$date[2] = str_replace('0', '', $date[2]);
 	$date[1] = str_replace('0', '', $date[1]);
 	$view['datePriseDeVue'] = $date[2] . ' ' . $months[$date[1]-1] . ' ' . $date[0];
+  } else {
+	  $view['datePriseDeVue'] = '';
+	}
 	
 	$view['camera'] = $img['camera'];
 	$view['exifs-longueurFocale'] = $img['longueurFocale'];
@@ -100,7 +107,7 @@
 				  <?php
 			  }
 		  ?>
-				<div id="img-author"><?= $view['auteur'] ?></div>
+				<div id="img-author"><?= $view['photographer'] ?></div>
 				<div id="img-date"><?= $view['datePriseDeVue'] ?></div>
 				<ul id="img-colors">
 			<?php

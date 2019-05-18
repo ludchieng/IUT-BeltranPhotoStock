@@ -42,6 +42,9 @@
 			$priceTotal = 0;
 			foreach ($cart as $item) {
 				$img = DAO::getImageById($item->getIdImage());
+				$photographer = DAO::getPhotographerById($img['id_photographe'])->getData();
+				$view['photographer'] = $photographer['prenom'].' '.$photographer['nom'];
+				
 				$support['prixHT'] = '0.10';
 				
 				$itemPriceTotal = $img['prixHT'] + $support['prixHT'];
@@ -66,7 +69,7 @@
 						<?= $img['titre'] ?>
 										</a>
 										<div class="item-author">
-						<?= $img['auteur'] ?>
+						<?= $view['photographer'] ?>
 										</div>
 										<div class="item-label">
 											Quantité :

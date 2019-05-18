@@ -37,7 +37,8 @@
 		$sql = 'SELECT DISTINCT I.id_image, I.filename, I.titre, I.dateCreation, I.datePriseDeVue,
 				I.PrixHT, I.camera, I.longueurFocale, I.ouverture, I.tpsExpo, I.sensibiliteISO,
   				I.clefAcces, I.visibilite, I.id_collection, I.id_photographe, I.id_theme, I.auteur
-				FROM image I, tag T, posseder IT WHERE I.id_image=IT.id_image AND IT.id_tag=T.id_tag ';
+				FROM image I, tag T, posseder IT WHERE I.id_image=IT.id_image AND IT.id_tag=T.id_tag
+				AND I.visibilite = 0';
 		
 		// tags filter
 		$sql .= " AND (T.label LIKE '%".$search['0']."%'";

@@ -81,7 +81,7 @@
 			if($user[0]['disponible'] == 0) {
 				throw new DisabledAccountException('Account disabled', 1);
 			}
-			if($user[0]['hashIdentifiants'] == $password) {
+			if(password_verify($password, $user[0]['hashIdentifiants'])) {
 				return ($user[0][0]);
 			} else {
 				return false;

@@ -93,7 +93,7 @@
         'pays' => $form['pays'],
         'telephone' => '+'.$form['telephone-ind'].$form['telephone'],
         'email' => $form['email'],
-        'hashIdentifiants' => $form['mdp'],
+        'hashIdentifiants' => password_hash($form['mdp'], PASSWORD_DEFAULT),
         'disponible' => 1
       );
       $client = new Client($clientData);

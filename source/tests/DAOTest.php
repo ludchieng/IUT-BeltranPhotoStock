@@ -35,8 +35,8 @@ class DAOTest extends TestCase {
     9 => '+33115811099',
     'email' => 'bera.robinette@hotmail.fr',
     10 => 'bera.robinette@hotmail.fr',
-    'hashIdentifiants' => 'Overminer',
-    11 => 'Overminer',
+    'hashIdentifiants' => '$2y$10$Y7z2bH9/pr6W6slKSYNZ0uIX6vJoaeU7jeonjGsZ82UaguXb.08rS',
+    11 => '$2y$10$Y7z2bH9/pr6W6slKSYNZ0uIX6vJoaeU7jeonjGsZ82UaguXb.08rS',
     'disponible' => 1,
     12 => 1
   );
@@ -67,8 +67,8 @@ class DAOTest extends TestCase {
     11 => '+33421511748',
     'email' => 'bueno.carol@outlook.fr',
     12 => 'bueno.carol@outlook.fr',
-    'hashIdentifiants' => 'Purpectiod',
-    13 => 'Purpectiod',
+    'hashIdentifiants' => '$2y$10$Bbq4BsN1pPXo09E6uHqGwO4I1izgegp0/EQIPz6/JiNhqDQLkuaXK',
+    13 => '$2y$10$Bbq4BsN1pPXo09E6uHqGwO4I1izgegp0/EQIPz6/JiNhqDQLkuaXK',
     'disponible' => 1,
     14 => 1
   );
@@ -95,8 +95,8 @@ class DAOTest extends TestCase {
     9 => '+33176304137',
     'email' => 'c.legault@gustr.com',
     10 => 'c.legault@gustr.com',
-    'hashIdentifiants' => 'lelele',
-    11 => 'lelele',
+    'hashIdentifiants' => '$2y$10$bmzDZ1cyWQDh5ZTnU2Fg4eQHlu2.cNcBV0HAltiiVTw2cNGJauqOa',
+    11 => '$2y$10$bmzDZ1cyWQDh5ZTnU2Fg4eQHlu2.cNcBV0HAltiiVTw2cNGJauqOa',
     'disponible' => 1,
     12 => 1
   );
@@ -128,7 +128,7 @@ class DAOTest extends TestCase {
     	'pays' => 'France',
     	'telephone' => '+33195688611',
     	'email' => 'g.datir@hotmail.fr',
-    	'hashIdentifiants' => 'Haboutt2',
+    	'hashIdentifiants' => '$2y$10$aQ0dxWZO6swbRLJIO4oFFe4bX2OKE/1tdwlnmgiNYiZgoL2gzojeu',
     	'disponible' => 1,
     );
     $clientDBData = array (
@@ -154,8 +154,8 @@ class DAOTest extends TestCase {
     	9 => '+33195688611',
     	'email' => 'g.datir@hotmail.fr',
     	10 => 'g.datir@hotmail.fr',
-    	'hashIdentifiants' => 'Haboutt2',
-    	11 => 'Haboutt2',
+    	'hashIdentifiants' => '$2y$10$aQ0dxWZO6swbRLJIO4oFFe4bX2OKE/1tdwlnmgiNYiZgoL2gzojeu',
+    	11 => '$2y$10$aQ0dxWZO6swbRLJIO4oFFe4bX2OKE/1tdwlnmgiNYiZgoL2gzojeu',
     	'disponible' => 1,
     	12 => 1
     );
@@ -184,7 +184,7 @@ class DAOTest extends TestCase {
     	'pays' => 'France',
     	'telephone' => '+33195688611',
     	'email' => 'g.datir@hotmail.fr',
-    	'hashIdentifiants' => 'Haboutt2',
+    	'hashIdentifiants' => '$2y$10$8dcdBx/kbgoApfpVM4LSou0.k98PgYtMMXId4KuNuHx8zLqFz.o7K',
     	'disponible' => 1,
     );
     $pgrpherDBData = array (
@@ -214,8 +214,8 @@ class DAOTest extends TestCase {
     	11 => '+33195688611',
     	'email' => 'g.datir@hotmail.fr',
     	12 => 'g.datir@hotmail.fr',
-    	'hashIdentifiants' => 'Haboutt2',
-    	13 => 'Haboutt2',
+    	'hashIdentifiants' => '$2y$10$8dcdBx/kbgoApfpVM4LSou0.k98PgYtMMXId4KuNuHx8zLqFz.o7K',
+    	13 => '$2y$10$8dcdBx/kbgoApfpVM4LSou0.k98PgYtMMXId4KuNuHx8zLqFz.o7K',
     	'disponible' => 1,
     	14 => 1
     );
@@ -242,7 +242,7 @@ class DAOTest extends TestCase {
     	'pays' => 'France',
     	'telephone' => '+33195688611',
     	'email' => 'g.datir@hotmail.fr',
-    	'hashIdentifiants' => 'Haboutt2',
+    	'hashIdentifiants' => '$2y$10$8dcdBx/kbgoApfpVM4LSou0.k98PgYtMMXId4KuNuHx8zLqFz.o7K',
     	'disponible' => 1,
     );
     $adminDBData = array (
@@ -268,8 +268,8 @@ class DAOTest extends TestCase {
     	9 => '+33195688611',
     	'email' => 'g.datir@hotmail.fr',
     	10 => 'g.datir@hotmail.fr',
-    	'hashIdentifiants' => 'Haboutt2',
-    	11 => 'Haboutt2',
+    	'hashIdentifiants' => '$2y$10$8dcdBx/kbgoApfpVM4LSou0.k98PgYtMMXId4KuNuHx8zLqFz.o7K',
+    	11 => '$2y$10$8dcdBx/kbgoApfpVM4LSou0.k98PgYtMMXId4KuNuHx8zLqFz.o7K',
     	'disponible' => 1,
     	12 => 1
     );
