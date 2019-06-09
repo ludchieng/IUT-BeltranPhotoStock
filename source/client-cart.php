@@ -9,6 +9,8 @@
 	use \BeltranPhotoStock\Model\DAO;
 	require_once('model/DAO.php');
 	
+	// Load user object from SESSION
+	SessionManager::start();
 	$user = SessionManager::getAuthenticatedUser();
 	if(! $user instanceof Client) {
 		header('Location: ./login.php');

@@ -13,7 +13,6 @@
   $form['civilite-0-chk-state'] = '';
   $form['civilite-1-chk-state'] = '';
   $form['civilite-2-chk-state'] = '';
-  $form['civilite'] = '';
   if(isset($_POST['civilite'])) {
     switch($_POST['civilite']) {
       case '0':
@@ -62,19 +61,12 @@
 
   if(isset($_POST['submit']) && $form['mdp'] == $form['mdp-confirm']) {
     //Then both password inputs match
-
-    if($form['civilite'] != '' &&
+    if(isset($form['civilite']) &&
       $form['prenom'] != '' &&
       $form['nom'] != '' &&
-      $form['jour'] != '' &&
-      $form['mois'] != '' &&
-      $form['annee'] != '' &&
-      $form['telephone-ind'] != '' &&
-      $form['telephone'] != '' &&
-      $form['adresse'] != '' &&
-      $form['cp'] != '' &&
-      $form['ville'] != '' &&
-      $form['pays'] != '' &&
+			$form['annee'] != '' &&
+			$form['mois'] != '' &&
+			$form['jour'] != '' &&
       $form['email'] != '' &&
       $form['mdp'] != '' &&
       $form['mdp-confirm'] != ''
@@ -114,7 +106,7 @@
     } else {
       $view['form-header'] = '<div class="txt-red">Veuillez compléter tous les champs requis.</div>';
     }
-  } else {
+  } else if(isset($_POST['submit'])) {
     $view['form-header'] = '<div class="txt-red">Les deux mots de passe ne correspondent pas.</div>';
   }
 ?>
@@ -124,7 +116,7 @@
 
 
 <?php $htmlTitle = "Inscription — BeltranPhotoStock"; ?>
-<?php $htmlSpecificCSS = ""; ?>
+<?php $htmlSpecificCSS = "./public/styles/_signup.css"; ?>
 
 
 <?php ob_start(); ?>
@@ -161,7 +153,7 @@
         </div>
 
         <div class="form-group">
-          <label>Date de naissance</label>
+          <label>Date de naissance*</label>
           <fieldset class="form-date">
             <input class="form-control" name="jour" type="text" placeholder="jj" value="<?= $form['jour'] ?>" pattern="[0-9]{0,2}">
             <input class="form-control" name="mois" type="text" placeholder="mm" value="<?= $form['mois'] ?>" pattern="[0-9]{0,2}">
@@ -217,7 +209,14 @@
         </div>
 
         <?= $view['mdp'] ?>
-
+	
+				<div class="form-group">
+					<span id="cgu-link" data-toggle="modal" data-target="#cgu">Voir les conditions d'utilisation des données personnelles.</span>
+					<label>
+						<input type="checkbox" required> J'accepte ces conditions.
+					</label>
+				</div>
+				
         <div class="form-group">
           <input class="btn btn-default btn-blue-dark w-fullW " name="submit" type="submit" value="S'inscrire">
         </div>
@@ -225,6 +224,39 @@
     </div>
   </div>
 </main>
+
+<section id="cgu" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h3 class="modal-title">A propos de l'utilisation de vos données personnelles</h3>
+			</div>
+			<div class="modal-body">
+				<h4>Vos informations personnelles</h4>
+				<p>
+					Les informations qui vous sont demandées dans ce formulaire servent au bon traitement de votre commande. Elles
+					permettent notamment de communiquer votre adresse à nos services de livraison. Pour des raisons légales, votre
+					date de naissance est demandée et permet de nous assurer que vous êtes majeur.
+				</p>
+				<p>
+					Vous pouvez toutefois compléter vos coordonnées postales plus tard si vous n'envisagez pas de commander tout
+					de suite.
+				</p>
+				<h4>Vos achats</h4>
+				<p>
+					Nous utilisons des cookies pour enregistrer votre panier d'achat sur votre ordinateur. Ces informations servent
+					uniquement au passage de vos commandes. En aucun cas, nous ne transmettons ces données à quiconque en dehors de
+					nos services internes.
+				</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default btn-blue-dark" data-dismiss="modal">Compris</button>
+			</div>
+		</div>
+	
+	</div>
+</section>
 
 <?php //-- END BODY ------------------------------------------ ?>
 <?php $htmlBody = ob_get_clean(); ?>

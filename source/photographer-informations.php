@@ -1,4 +1,16 @@
 <?php
+	// Import dependencies
+	use BeltranPhotoStock\Model\Photographer;
+	require_once('model/Photographer.php');
+	use \BeltranPhotoStock\Model\SessionManager;
+	require_once('model/SessionManager.php');
+	
+	// Load user object from SESSION
+	SessionManager::start();
+	$user = SessionManager::getAuthenticatedUser();
+	if(! $user instanceof Photographer) {
+		header('Location: ./login.php');
+	}
 
 ?>
 

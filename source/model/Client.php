@@ -2,7 +2,6 @@
 	namespace BeltranPhotoStock\Model;
 	
 	use \BeltranPhotoStock\Model\CartItem;
-	
 	require_once('model/CartItem.php');
 	
 	require_once('model/User.php');

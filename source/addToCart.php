@@ -6,12 +6,16 @@
 	require_once('model/SessionManager.php');
 	
 	// Construct Image URL
-	$idImage = preg_replace("/[^0-9]/", "",$_POST['id_image']);
-	$url = './image.php?id_image='.$idImage;
+	if(isset($_POST['id_image'])) {
+		$idImage = preg_replace("/[^0-9]/", "",$_POST['id_image']);
+		$url = './image.php?id_image='.$idImage;
+	} else {
+		header("Location: ./index.php");
+	}
 	
 	// Check parameters
 	$user = SessionManager::getAuthenticatedUser();
-	if(!isset($_POST['id_image'], $user)) {
+	if(!isset($user)) {
 		header("Location: $url");
 	}
 	

@@ -4,7 +4,7 @@
 	class CartItem {
 		
 		private $id_support;
-		private $num;
+		private $dim;
 		private $id_image;
 		private $qte;
 		

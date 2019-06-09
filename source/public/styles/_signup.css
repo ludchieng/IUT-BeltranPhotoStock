@@ -1,0 +1,16 @@
+#cgu {
+    margin-top: 2em;
+}
+
+#cgu-link:hover {
+    color: var(--orange-pale);
+    cursor: pointer;
+}
+
+#cgu h3 {
+    color: var(--blue-hard);
+}
+
+#cgu h4 {
+    color: var(--orange);
+}

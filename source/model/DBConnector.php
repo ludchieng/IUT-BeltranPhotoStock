@@ -23,7 +23,7 @@
 		 * @param  string $password Database password
 		 * @return PDO              Database connection object
 		 */
-		static private function dbConnect($user, $password) {
+		static public function dbConnect($user, $password) {
 			return new \PDO('mysql:host=localhost;dbname=beltran_photo_stock;charset=utf8', $user, $password);
 		}
 	}

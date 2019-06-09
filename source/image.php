@@ -16,10 +16,9 @@
 	if(isset($_GET['id_image'])) {
 		$idImage = preg_replace("/[^0-9]/", "", $_GET['id_image']);
 		// Select image data from database
-		$dao = new DAO();
-		$img = $dao->getImageById($idImage);
-		$tags = $dao->getImageTagsById($idImage);
-		$colors = $dao->getImageColorsById($idImage);
+		$img = DAO::getImageById($idImage);
+		$tags = DAO::getImageTagsById($idImage);
+		$colors = DAO::getImageColorsById($idImage);
 		if(count($img) == 0) {
 			header('Location: ./index.php');
 		}

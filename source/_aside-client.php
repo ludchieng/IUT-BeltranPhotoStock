@@ -2,11 +2,15 @@
 	// Import dependencies
 	use \BeltranPhotoStock\Model\SessionManager;
 	require_once('model/SessionManager.php');
+	use \BeltranPhotoStock\Model\Client;
+	require_once('model/Client.php');
 	
-  // Load user profile picture
-	$user = SessionManager::getAuthenticatedUser();
+  // Load user object from SESSION
 	if(!isset($user)) {
-		header('Location: ./login.php');
+	  $user = SessionManager::getAuthenticatedUser();
+		if(!$user instanceof Client) {
+			header('Location: ./login.php');
+		}
 	}
 	
 	// Initialize view variables
