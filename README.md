@@ -3,13 +3,13 @@
 
 Shutterstock-like web platform developped from scratch with object oriented php following MVC design pattern and test driven development methods.
 
-Project made in the context of programming courses for a 2-year post A level degree (computer science).
+:mortar_board: Project made in the context of programming courses for a 2-year post A level degree (computer science).
 
 ## **Instructions** :wrench::gear:
 
-1. Paste the *source* folder content on your web server,
-2. Run *data/sample.sql* script in your MySQL database schema,
-3. Open *source/model/DBConnector.php* and change the admin and password string (line 18).
+1. Paste the `source` folder content on your web server,
+2. Run `data/sample.sql` script in your MySQL database schema,
+3. Open `source/model/DBConnector.php` and change the admin and password string (line 18).
 
 ```
 static public function dbConnectAsAdmin() {
